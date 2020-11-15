@@ -1,6 +1,8 @@
 package com.example.lishui;
 
+import com.example.lishui.dao.entity.PageInfo;
 import com.example.lishui.dao.entity.User;
+import com.example.lishui.service.PageInfoService;
 import com.example.lishui.service.UserService;
 import org.assertj.core.util.Strings;
 import org.junit.jupiter.api.Test;
@@ -17,6 +19,8 @@ import java.util.Optional;
 class LishuiApplicationTests {
     @Autowired
     UserService userService;
+    @Autowired
+    PageInfoService pageInfoService;
 
     @Test
     void contextLoads() {
@@ -51,7 +55,7 @@ class LishuiApplicationTests {
                 new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()));
         userService.addUser(user);
         Optional<User> old = userService.findUserById(1L);
-        Assert.notNull(old.get(), "has id==1 user");
+        Assert.notNull(old.isPresent(), "has id==1 user");
         Assert.isTrue(userService.deleteUserById(1L),"delete success");
     }
 
@@ -70,5 +74,12 @@ class LishuiApplicationTests {
         }
         List<User> allUser1 = userService.findAllUser();
         Assert.isTrue(allUser1.isEmpty(),"no users");
+    }
+
+    @Test
+    public void addPageInfoTest(){
+        PageInfo pageInfo = new PageInfo(null, "page1", "alias1", "www.baidu.com", 1);
+        Assert.isTrue(pageInfoService.addPageInfo(pageInfo),"add pageInfo success");
+
     }
 }

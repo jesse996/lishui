@@ -49,7 +49,7 @@ public class UserController {
         return CommonResult.success(newUser);
     }
 
-    @GetMapping("/all")
+    @GetMapping("/list")
     public CommonResult<List<User>> allUser(){
         List<User> allUser = userService.findAllUser();
         return CommonResult.success(allUser);
