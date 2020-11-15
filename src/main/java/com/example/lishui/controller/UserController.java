@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Created by jesse on 2020/11/15 下午5:45
  */
@@ -39,5 +41,17 @@ public class UserController {
             log.info("delete user  failed");
             return CommonResult.failed("delete user failed!");
         }
+    }
+
+    @GetMapping("/update")
+    public CommonResult<User> updateUser(@RequestBody User newUser) {
+        userService.updateUser(newUser);
+        return CommonResult.success(newUser);
+    }
+
+    @GetMapping("/all")
+    public CommonResult<List<User>> allUser(){
+        List<User> allUser = userService.findAllUser();
+        return CommonResult.success(allUser);
     }
 }
