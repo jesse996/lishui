@@ -6,7 +6,7 @@
             用户_角色表:
                 id,uid,rid
     文章表:
-        id,title,content,author,uid(添加此文章的管理员),create_at,update_at
+        id,title,content,author,uid(添加此文章的管理员),create_at,update_at,status(可见范围)
     操作记录表 option：
         id,uid,option,datetime
     轮波图表 slide：
