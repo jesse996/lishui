@@ -20,30 +20,19 @@ public class UserController {
     UserService userService;
 
     @PostMapping("/add")
-    public CommonResult<User> addUser(@RequestBody User user) {
-        boolean addSuccess = userService.addUser(user);
-        if (addSuccess) {
-            log.info("create user success");
-            return CommonResult.success(user, "create user success!");
-        } else {
-            log.info("create user failed");
-            return CommonResult.failed("create user failed!");
-        }
+    public CommonResult<User> addUser(@RequestBody User user) throws Exception {
+        user = userService.addUser(user);
+       return CommonResult.success(user, "create user success!");
+
     }
 
     @GetMapping("/delete/{id}")
-    public CommonResult<String> deleteUser(@PathVariable("id") Long id) {
-        boolean addSuccess = userService.deleteUserById(id);
-        if (addSuccess) {
-            log.info("delete user success");
-            return CommonResult.success("delete user success");
-        } else {
-            log.info("delete user  failed");
-            return CommonResult.failed("delete user failed!");
-        }
+    public CommonResult<String> deleteUser(@PathVariable("id") Long id) throws Exception {
+        userService.deleteUserById(id);
+        return CommonResult.success("删除成功");
     }
 
-    @GetMapping("/update")
+    @PostMapping("/update")
     public CommonResult<User> updateUser(@RequestBody User newUser) {
         userService.updateUser(newUser);
         return CommonResult.success(newUser);

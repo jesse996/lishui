@@ -9,13 +9,13 @@ import java.util.Optional;
  * Created by jesse on 2020/11/15 下午4:37
  */
 public interface UserService {
-    boolean addUser(User user);
+    User addUser(User user) throws Exception;
 
-    boolean deleteUserById(Long id);
+    void deleteUserById(Long id) throws Exception;
 
     Optional<User> findUserById(Long id);
 
-    List<User> findUserByUsername(String username);
+    Optional<User> findUserByUsername(String username);
 
     List<User> findAllUser();
 

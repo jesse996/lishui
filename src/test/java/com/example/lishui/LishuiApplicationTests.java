@@ -30,12 +30,20 @@ class LishuiApplicationTests {
     void addUser() {
         User user = new User(null, "jeese", "pass", "186023", "admin",
                 new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()));
-        Assert.isTrue(userService.addUser(user), "add user success");
-        Assert.isTrue(!userService.addUser(user), "add user failed");
+
+        try {
+            User user1 = userService.addUser(user);
+            Assert.notNull(user1.getId(), "add user failed");
+            User user2 = userService.addUser(user);
+
+        } catch (Exception e) {
+            Assert.hasText("用户已存在", "用户已存在");
+        }
+
     }
 
     @Test
-    void updateUser() {
+    void updateUser() throws Exception {
         User user = new User(null, "jeese", "pass", "186023", "admin",
                 new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()));
         userService.addUser(user);
@@ -53,16 +61,22 @@ class LishuiApplicationTests {
     void deleteUser() {
         User user = new User(null, "jesse", "pass", "186023", "admin",
                 new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()));
-        userService.addUser(user);
-        List<User> old = userService.findUserByUsername("jesse");
-        Assert.notEmpty(old, "has username is jesse");
-        Assert.isTrue(old.size() == 1, "only one username is jesse");
+        Optional<User> old = null;
+        try {
+            user= userService.addUser(user);
+            Assert.notNull(user.getId(),"[deleteUser]: user add failed");
+            userService.deleteUserById(user.getId());
+            userService.deleteUserById(user.getId());
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assert.hasText("删除ID不存在","删除ID不存在");
+        }
 
-        Assert.isTrue(userService.deleteUserById(old.get(0).getId()), "delete success");
+
     }
 
     @Test
-    void findAllUser() {
+    void findAllUser() throws Exception {
         User user1 = new User(null, "jeese1", "pass", "186023", "admin",
                 new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()));
         User user2 = new User(null, "jeese2", "pass", "186023", "admin",
@@ -90,11 +104,11 @@ class LishuiApplicationTests {
 
 
     @Test
-    public void updatePageInfoTest(){
+    public void updatePageInfoTest() {
         PageInfo pageInfo = pageInfoService.addPageInfo(new PageInfo(null, "page1", "alias1", "www.baidu.com", 1));
         pageInfo.setName("new name");
         PageInfo newPageInfo = pageInfoService.updatePageInfo(pageInfo);
-        Assert.isTrue("new name".equals(newPageInfo.getName()),"update pageInfo success");
+        Assert.isTrue("new name".equals(newPageInfo.getName()), "update pageInfo success");
     }
 
     @Test
@@ -102,17 +116,25 @@ class LishuiApplicationTests {
         PageInfo pageInfo = pageInfoService.addPageInfo(new PageInfo(null, "page1", "alias1", "www.baidu.com", 1));
         Long id = pageInfo.getId();
         Assert.isTrue(pageInfoService.deletePageInfo(id), "delete pageInfo success");
-        Assert.isNull(pageInfoService.findById(id),"delete pageInfo success1");
+        Assert.isNull(pageInfoService.findById(id), "delete pageInfo success1");
     }
 
     @Test
-    public void listPageInfoTest(){
+    public void ErrorDeletePageInfoTest() {
+        Assert.isTrue(pageInfoService.findById(1L).isEmpty(), "no id is 1 page info");
+        Assert.isTrue(!pageInfoService.deletePageInfo(1L), "delete no exist page info failed");
+
+    }
+
+
+    @Test
+    public void listPageInfoTest() {
         List<PageInfo> pageInfos = pageInfoService.listAll();
-        Assert.isTrue(pageInfos.isEmpty(),"begin it is empty");
+        Assert.isTrue(pageInfos.isEmpty(), "begin it is empty");
         pageInfoService.addPageInfo(new PageInfo(null, "page1", "alias1", "www.baidu.com", 1));
         pageInfoService.addPageInfo(new PageInfo(null, "page2", "alias2", "www.baidu.com", 1));
         pageInfos = pageInfoService.listAll();
-        Assert.isTrue(pageInfos.size()==2,"get 2 pageInfo success");
+        Assert.isTrue(pageInfos.size() == 2, "get 2 pageInfo success");
     }
 
 }

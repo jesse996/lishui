@@ -19,24 +19,23 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public boolean addUser(User user) {
-        List<User> users = userRepository.findByUsername(user.getUsername());
-        if (users.isEmpty()) {
-            userRepository.save(user);
-            return true;
+    public User addUser(User user) throws Exception {
+        Optional<User> u = userRepository.findByUsername(user.getUsername());
+        System.out.println(u);
+        if (u.isEmpty()) {
+            return userRepository.save(user);
         } else {
-            return false;
+            throw new Exception("用户名已存在");
         }
     }
 
     @Override
-    public boolean deleteUserById(Long id) {
+    public void deleteUserById(Long id) throws Exception {
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
             userRepository.deleteById(id);
-            return true;
         } else {
-            return false;
+            throw new Exception("删除ID不存在");
         }
     }
 
@@ -46,7 +45,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findUserByUsername(String username) {
+    public Optional<User> findUserByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
