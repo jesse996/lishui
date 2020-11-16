@@ -1,6 +1,6 @@
 数据库表：
     用户表 user:
-        id,username,password,role,tel,create_at,update_at
+        id,username,password,role,tel,create_at,update_at,last_login_datetime
             角色表:
                 id,name
             用户_角色表:

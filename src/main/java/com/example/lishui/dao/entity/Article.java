@@ -47,11 +47,13 @@ public class Article {
 
     @CreationTimestamp
     @Column(nullable = false)
-    private Timestamp createAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createAt;
 
     @UpdateTimestamp
     @Column(nullable = false)
-    private Timestamp updateAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateAt;
 
 
 }
