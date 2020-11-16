@@ -40,7 +40,7 @@ class LishuiApplicationTests {
                 new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()));
         userService.addUser(user);
         Optional<User> old = userService.findUserById(1L);
-        Assert.notNull(old.get(), "has id==1 user");
+        Assert.isTrue(old.isPresent(), "has id==1 user");
 
         User oldUser = old.get();
         String oldTel = oldUser.getTel();
@@ -50,17 +50,19 @@ class LishuiApplicationTests {
     }
 
     @Test
-    void deleteUser(){
-        User user = new User(null, "jeese", "pass", "186023", "admin",
+    void deleteUser() {
+        User user = new User(null, "jesse", "pass", "186023", "admin",
                 new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()));
         userService.addUser(user);
-        Optional<User> old = userService.findUserById(1L);
-        Assert.notNull(old.isPresent(), "has id==1 user");
-        Assert.isTrue(userService.deleteUserById(1L),"delete success");
+        List<User> old = userService.findUserByUsername("jesse");
+        Assert.notEmpty(old, "has username is jesse");
+        Assert.isTrue(old.size() == 1, "only one username is jesse");
+
+        Assert.isTrue(userService.deleteUserById(old.get(0).getId()), "delete success");
     }
 
     @Test
-    void findAllUser(){
+    void findAllUser() {
         User user1 = new User(null, "jeese1", "pass", "186023", "admin",
                 new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()));
         User user2 = new User(null, "jeese2", "pass", "186023", "admin",
@@ -68,18 +70,49 @@ class LishuiApplicationTests {
         userService.addUser(user1);
         userService.addUser(user2);
         List<User> allUser = userService.findAllUser();
-        Assert.notEmpty(allUser,"not empty");
+        Assert.notEmpty(allUser, "not empty");
         for (User user : allUser) {
             userService.deleteUserById(user.getId());
         }
         List<User> allUser1 = userService.findAllUser();
-        Assert.isTrue(allUser1.isEmpty(),"no users");
+        Assert.isTrue(allUser1.isEmpty(), "no users");
     }
 
     @Test
-    public void addPageInfoTest(){
+    public void addPageInfoTest() {
         PageInfo pageInfo = new PageInfo(null, "page1", "alias1", "www.baidu.com", 1);
-        Assert.isTrue(pageInfoService.addPageInfo(pageInfo),"add pageInfo success");
 
+        pageInfo = pageInfoService.addPageInfo(pageInfo);
+        System.out.println(pageInfo.getId());
+
+        Assert.notNull(pageInfo.getId(), "add pageInfo success");
     }
+
+
+    @Test
+    public void updatePageInfoTest(){
+        PageInfo pageInfo = pageInfoService.addPageInfo(new PageInfo(null, "page1", "alias1", "www.baidu.com", 1));
+        pageInfo.setName("new name");
+        PageInfo newPageInfo = pageInfoService.updatePageInfo(pageInfo);
+        Assert.isTrue("new name".equals(newPageInfo.getName()),"update pageInfo success");
+    }
+
+    @Test
+    public void deletePageInfoTest() {
+        PageInfo pageInfo = pageInfoService.addPageInfo(new PageInfo(null, "page1", "alias1", "www.baidu.com", 1));
+        Long id = pageInfo.getId();
+        Assert.isTrue(pageInfoService.deletePageInfo(id), "delete pageInfo success");
+        Assert.isNull(pageInfoService.findById(id),"delete pageInfo success1");
+    }
+
+    @Test
+    public void listPageInfoTest(){
+        List<PageInfo> pageInfos = pageInfoService.listAll();
+        Assert.isTrue(pageInfos.isEmpty(),"begin it is empty");
+        pageInfoService.addPageInfo(new PageInfo(null, "page1", "alias1", "www.baidu.com", 1));
+        pageInfoService.addPageInfo(new PageInfo(null, "page2", "alias2", "www.baidu.com", 1));
+        pageInfos = pageInfoService.listAll();
+        Assert.isTrue(pageInfos.size()==2,"get 2 pageInfo success");
+    }
+
 }

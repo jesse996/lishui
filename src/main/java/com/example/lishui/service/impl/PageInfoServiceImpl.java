@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by jesse on 2020/11/15 下午8:45
@@ -17,9 +18,8 @@ public class PageInfoServiceImpl implements PageInfoService {
     PageInfoRepository pageInfoRepository;
 
     @Override
-    public boolean addPageInfo(PageInfo pageInfo) {
-        pageInfoRepository.save(pageInfo);
-        return true;
+    public PageInfo addPageInfo(PageInfo pageInfo) {
+        return pageInfoRepository.save(pageInfo);
     }
 
     @Override
@@ -29,13 +29,17 @@ public class PageInfoServiceImpl implements PageInfoService {
     }
 
     @Override
-    public boolean updatePageInfo(PageInfo pageInfo) {
-        pageInfoRepository.save(pageInfo);
-        return true;
+    public PageInfo updatePageInfo(PageInfo pageInfo) {
+        return pageInfoRepository.save(pageInfo);
     }
 
     @Override
     public List<PageInfo> listAll() {
         return pageInfoRepository.findAll();
+    }
+
+    @Override
+    public Optional<PageInfo> findById(Long id) {
+        return pageInfoRepository.findById(id);
     }
 }
