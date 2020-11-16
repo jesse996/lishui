@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface PageInfoService {
     PageInfo addPageInfo(PageInfo pageInfo);
 
-    boolean deletePageInfo(Long id);
+    void deletePageInfo(Long id);
 
     PageInfo updatePageInfo(PageInfo pageInfo);
 

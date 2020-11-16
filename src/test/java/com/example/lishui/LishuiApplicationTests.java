@@ -1,5 +1,6 @@
 package com.example.lishui;
 
+import com.example.lishui.dao.PageInfoRepository;
 import com.example.lishui.dao.entity.PageInfo;
 import com.example.lishui.dao.entity.User;
 import com.example.lishui.service.PageInfoService;
@@ -21,7 +22,8 @@ class LishuiApplicationTests {
     UserService userService;
     @Autowired
     PageInfoService pageInfoService;
-
+    @Autowired
+    PageInfoRepository pageInfoRepository;
     @Test
     void contextLoads() {
     }
@@ -43,18 +45,21 @@ class LishuiApplicationTests {
     }
 
     @Test
-    void updateUser() throws Exception {
-        User user = new User(null, "jeese", "pass", "186023", "admin",
+    void updateUser() {
+        User user = new User(null, "jesse", "pass", "186023", "admin",
                 new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()));
-        userService.addUser(user);
-        Optional<User> old = userService.findUserById(1L);
-        Assert.isTrue(old.isPresent(), "has id==1 user");
-
-        User oldUser = old.get();
-        String oldTel = oldUser.getTel();
-        oldUser.setTel("new" + oldTel);
-        User newUser = userService.updateUser(oldUser);
-        Assert.isTrue(newUser.getTel().equals("new" + oldTel), "update success");
+        try {
+            userService.addUser(user);
+            Optional<User> old = userService.findUserByUsername("jesse");
+            Assert.isTrue(old.isPresent(), "don't has user name jesse");
+            User oldUser = old.get();
+            String oldTel = oldUser.getTel();
+            oldUser.setTel("new" + oldTel);
+            User newUser = userService.updateUser(oldUser);
+            Assert.isTrue(newUser.getTel().equals("new" + oldTel), "update success");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -63,13 +68,13 @@ class LishuiApplicationTests {
                 new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()));
         Optional<User> old = null;
         try {
-            user= userService.addUser(user);
-            Assert.notNull(user.getId(),"[deleteUser]: user add failed");
+            user = userService.addUser(user);
+            Assert.notNull(user.getId(), "[deleteUser]: user add failed");
             userService.deleteUserById(user.getId());
             userService.deleteUserById(user.getId());
         } catch (Exception e) {
             e.printStackTrace();
-            Assert.hasText("删除ID不存在","删除ID不存在");
+            Assert.hasText(e.getMessage(), "删除不存在 不出现异常");
         }
 
 
@@ -115,22 +120,28 @@ class LishuiApplicationTests {
     public void deletePageInfoTest() {
         PageInfo pageInfo = pageInfoService.addPageInfo(new PageInfo(null, "page1", "alias1", "www.baidu.com", 1));
         Long id = pageInfo.getId();
-        Assert.isTrue(pageInfoService.deletePageInfo(id), "delete pageInfo success");
-        Assert.isNull(pageInfoService.findById(id), "delete pageInfo success1");
+        pageInfoService.deletePageInfo(id);
+        Assert.isTrue(pageInfoService.findById(id).isEmpty(), "delete pageInfo failed");
     }
 
     @Test
     public void ErrorDeletePageInfoTest() {
         Assert.isTrue(pageInfoService.findById(1L).isEmpty(), "no id is 1 page info");
-        Assert.isTrue(!pageInfoService.deletePageInfo(1L), "delete no exist page info failed");
+        try {
+            pageInfoService.deletePageInfo(1L);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            Assert.hasText(e.getMessage(), "删除不存在的页面不出现异常");
+        }
 
     }
 
 
     @Test
     public void listPageInfoTest() {
+        pageInfoRepository.deleteAll();
         List<PageInfo> pageInfos = pageInfoService.listAll();
-        Assert.isTrue(pageInfos.isEmpty(), "begin it is empty");
+        Assert.isTrue(pageInfos.isEmpty(), "begin it is not empty");
         pageInfoService.addPageInfo(new PageInfo(null, "page1", "alias1", "www.baidu.com", 1));
         pageInfoService.addPageInfo(new PageInfo(null, "page2", "alias2", "www.baidu.com", 1));
         pageInfos = pageInfoService.listAll();

@@ -30,13 +30,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUserById(Long id) throws Exception {
-        Optional<User> user = userRepository.findById(id);
-        if (user.isPresent()) {
+    public void deleteUserById(Long id) {
+//        Optional<User> user = userRepository.findById(id);
+//        if (user.isPresent()) {
             userRepository.deleteById(id);
-        } else {
-            throw new Exception("删除ID不存在");
-        }
+//        } else {
+//            throw new Exception("删除ID不存在");
+//        }
     }
 
     @Override

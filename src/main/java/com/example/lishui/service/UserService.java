@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface UserService {
     User addUser(User user) throws Exception;
 
-    void deleteUserById(Long id) throws Exception;
+    void deleteUserById(Long id);
 
     Optional<User> findUserById(Long id);
 

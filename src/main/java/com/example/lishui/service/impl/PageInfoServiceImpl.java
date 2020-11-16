@@ -23,9 +23,8 @@ public class PageInfoServiceImpl implements PageInfoService {
     }
 
     @Override
-    public boolean deletePageInfo(Long id) {
+    public void deletePageInfo(Long id) {
         pageInfoRepository.deleteById(id);
-        return true;
     }
 
     @Override
