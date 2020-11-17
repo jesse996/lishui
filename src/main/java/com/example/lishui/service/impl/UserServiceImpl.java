@@ -4,6 +4,8 @@ import com.example.lishui.dao.UserRepository;
 import com.example.lishui.dao.entity.User;
 import com.example.lishui.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +19,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Override
     public User addUser(User user) throws Exception {
@@ -59,4 +63,14 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
         return user;
     }
+
+//    @Override
+//    public String login(String username, String password) {
+//        Optional<User> user = userRepository.findByUsername(username);
+//        if (user.isPresent()&&passwordEncoder.matches(password, user.get().getPassword())) {
+//            return username;
+//        }else {
+//            throw new BadCredentialsException("用户名或密码不正确");
+//        }
+//    }
 }

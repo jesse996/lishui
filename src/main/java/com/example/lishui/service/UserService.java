@@ -22,4 +22,7 @@ public interface UserService {
     User updateUser(User user);
 
 
+    //返回token
+//    String login(String username, String password);
+
 }
