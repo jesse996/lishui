@@ -35,7 +35,7 @@ import java.util.Optional;
  */
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled=true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserService userService;
@@ -55,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginProcessingUrl("/login")
                 .successHandler((req, res, authentication) -> {
-                    Object principal =  authentication.getPrincipal();
+                    Object principal = authentication.getPrincipal();
                     res.setContentType("application/json;charset=utf-8");
                     PrintWriter writer = res.getWriter();
                     writer.write(new ObjectMapper().writeValueAsString(CommonResult.success(principal)));
@@ -73,7 +73,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutUrl("/logout")
-                .logoutSuccessHandler((req,res,authentication)->{
+                .logoutSuccessHandler((req, res, authentication) -> {
                     res.setContentType("application/json;charset=utf-8");
                     PrintWriter writer = res.getWriter();
                     writer.write(new ObjectMapper().writeValueAsString(CommonResult.success("注销成功")));
@@ -86,6 +86,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, // 允许对于网站静态资源的无授权访问
                         "/",
                         "/explorer/**",
+                        "/druid",
                         "/*.html",
                         "/favicon.ico",
                         "/**/*.html",
@@ -102,6 +103,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .anyRequest()// 除上面外的所有请求全部需要鉴权认证
                 .authenticated();
+//                .permitAll();
         // 禁用缓存
         httpSecurity.headers().cacheControl();
         // 添加JWT filter

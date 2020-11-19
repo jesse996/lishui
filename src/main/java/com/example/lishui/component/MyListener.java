@@ -1,6 +1,8 @@
 package com.example.lishui.component;
 
+import com.example.lishui.dao.OptionRepository;
 import com.example.lishui.dao.UserRepository;
+import com.example.lishui.dao.entity.Option;
 import com.example.lishui.dao.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
@@ -17,8 +19,10 @@ import java.time.Instant;
 public class MyListener {
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    OptionRepository optionRepository;
 
-    //用户登陆成功，修改最后登陆时间
+    //用户登陆成功，修改最后登陆时间，并添加登陆记录
     @EventListener(AuthenticationSuccessEvent.class)
     public void AuthenticationSuccessListener(AuthenticationSuccessEvent authenticationSuccessEvent) {
         UserDetailImpl userDetails = (UserDetailImpl) authenticationSuccessEvent.getAuthentication().getPrincipal();
@@ -26,7 +30,12 @@ public class MyListener {
         var userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
+            //修改最后登陆时间
             user.setLastLoginDateTime(Timestamp.from(Instant.now()));
+            userRepository.save(user);
+            //新增登陆记录
+            optionRepository.save(new Option(null, user.getUsername(), "post", "登陆", null));
+
         }
     }
 }

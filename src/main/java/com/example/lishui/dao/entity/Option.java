@@ -41,8 +41,7 @@ public class Option {
     String name;
 
     @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
-    private Date createAt;
+    private Timestamp createAt;
 
 }
