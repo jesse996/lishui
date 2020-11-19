@@ -6,6 +6,7 @@ import com.example.lishui.dao.entity.Option;
 import com.example.lishui.dao.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.authentication.event.AuthenticationSuccessEvent;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,7 @@ import java.time.Instant;
  * Created by jesse on 2020/11/19 上午10:46
  */
 @Component
+@Async
 public class MyListener {
     @Autowired
     UserRepository userRepository;
@@ -35,7 +37,6 @@ public class MyListener {
             userRepository.save(user);
             //新增登陆记录
             optionRepository.save(new Option(null, user.getUsername(), "post", "登陆", null));
-
         }
     }
 }
