@@ -85,6 +85,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, // 允许对于网站静态资源的无授权访问
                         "/",
+                        "/explorer/**",
                         "/*.html",
                         "/favicon.ico",
                         "/**/*.html",
@@ -97,7 +98,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.OPTIONS)//跨域请求会先进行一次options请求
                 .permitAll()
 //                .antMatchers("/admin/login", "/admin/register")// 对登录注册要允许匿名访问
-//
 //                .permitAll()
 
                 .anyRequest()// 除上面外的所有请求全部需要鉴权认证

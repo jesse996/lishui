@@ -14,6 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -55,6 +57,7 @@ public class User implements Serializable {
     @Column(nullable = false)
     private Timestamp updateAt;
 
+//    @Column(columnDefinition = "TIMESTAMP")
     private Timestamp lastLoginDateTime;
 //    @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 //    //级联保存、更新、删除、刷新;延迟加载。当删除用户，会级联删除该用户的所有文章

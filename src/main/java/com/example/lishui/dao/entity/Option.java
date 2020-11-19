@@ -3,8 +3,10 @@ package com.example.lishui.dao.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -20,10 +22,27 @@ public class Option {
     @GeneratedValue
     private Long id;
 
-    Long uid;
+//    @Column(nullable = false)
+//    Long uid;
+//
+//    @ManyToOne()
+//    @JoinColumn(name = "uid")
+//    private User user;
 
-    String option;
+    @Column(nullable = false)
+    String username;
 
+    //get,post,delete,put,patch 5种类型
+    @Column(nullable = false)
+    String type;
+
+    //具体操作名字
+    @Column(nullable = false)
+    String name;
+
+    @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    Date optionTime;
+    @Column(nullable = false)
+    private Date createAt;
+
 }
