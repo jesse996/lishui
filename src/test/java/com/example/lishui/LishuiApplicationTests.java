@@ -18,12 +18,12 @@ import java.util.Optional;
 
 @SpringBootTest
 class LishuiApplicationTests {
-    @Autowired
-    UserService userService;
-    @Autowired
-    PageInfoService pageInfoService;
-    @Autowired
-    PageInfoRepository pageInfoRepository;
+//    @Autowired
+//    UserService userService;
+//    @Autowired
+//    PageInfoService pageInfoService;
+//    @Autowired
+//    PageInfoRepository pageInfoRepository;
     @Test
     void contextLoads() {
     }
