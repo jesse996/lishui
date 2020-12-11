@@ -14,7 +14,8 @@ import java.util.Optional;
 /**
  * Created by jesse on 2020/11/15 下午5:45
  */
-@RestController
+//先取消
+//@RestController
 @RequestMapping("/user")
 @Slf4j
 public class UserController {

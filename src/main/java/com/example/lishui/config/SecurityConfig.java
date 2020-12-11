@@ -25,6 +25,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 import java.io.PrintWriter;
 import java.util.List;
@@ -49,9 +50,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
                 .csrf()
                 .disable()
-//                .sessionManagement()// 基于token，所以不需要session
+                .sessionManagement()// 基于token，所以不需要session
+                .maximumSessions(1)
 //                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and()
+                .and()
+                .and()
                 .formLogin()
                 .loginProcessingUrl("/login")
                 .successHandler((req, res, authentication) -> {
@@ -102,8 +105,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .permitAll()
 
                 .anyRequest()// 除上面外的所有请求全部需要鉴权认证
-                .authenticated();
-//                .permitAll();
+//                .authenticated();
+                .permitAll();
         // 禁用缓存
         httpSecurity.headers().cacheControl();
         // 添加JWT filter
@@ -144,4 +147,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
+    //会话管理要提供这个类
+    @Bean
+    public HttpSessionEventPublisher httpSessionEventPublisher(){
+        return new HttpSessionEventPublisher();
+    }
 }

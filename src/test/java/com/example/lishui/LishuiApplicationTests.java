@@ -1,20 +1,7 @@
 package com.example.lishui;
 
-import com.example.lishui.dao.PageInfoRepository;
-import com.example.lishui.dao.entity.PageInfo;
-import com.example.lishui.dao.entity.User;
-import com.example.lishui.service.PageInfoService;
-import com.example.lishui.service.UserService;
-import org.assertj.core.util.Strings;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.util.Assert;
-
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.util.List;
-import java.util.Optional;
 
 @SpringBootTest
 class LishuiApplicationTests {

@@ -46,7 +46,7 @@ public class UploadController {
 //        String tempFileName = new StringBuilder().append(sdf.format(new Date())).append(random.nextInt(100)).append(suffixName).toString();
 
         String path=new ApplicationHome(getClass()).getDir().getPath();
-        System.out.println("path: "+path);
+//        System.out.println("path: "+path);
         Path uploadPath = Paths.get(path+ "/upload/");
 
         if (!Files.exists(uploadPath)) {

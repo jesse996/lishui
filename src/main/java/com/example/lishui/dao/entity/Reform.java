@@ -4,22 +4,24 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
- * Created by jesse on 2020/11/16 下午3:35
+ * Created by jesse on 2020/12/10 下午3:43
+ *     改革指数表 (reform):
+ *         id,link
  */
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Slide {
+public class Reform implements Serializable {
     @Id
     @GeneratedValue
-    Long id;
+    private Long id;
 
-    String link;
+    private String link;
 }

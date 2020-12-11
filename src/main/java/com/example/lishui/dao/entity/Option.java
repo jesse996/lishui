@@ -11,6 +11,7 @@ import java.util.Date;
 
 /**
  * Created by jesse on 2020/11/16 下午7:05
+ * 操作记录
  * id,uid,option,datetime
  */
 @Entity
