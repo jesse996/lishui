@@ -1,16 +1,21 @@
 package com.example.lishui.controller;
 
 import com.example.lishui.common.api.CommonResult;
+import com.example.lishui.common.api.ResultCode;
+import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.PropertyValueException;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 /**
  * Created by jesse on 2020/11/16 下午1:59
  */
-@ControllerAdvice
-@RestController
+@RestControllerAdvice
 @Slf4j
 public class WebExceptionHandler {
 //    @ExceptionHandler
@@ -25,10 +30,34 @@ public class WebExceptionHandler {
 //        return ResultBean.error(-2, "密码错误");
 //    }
 
+//  data rest 查找不存在的id时候会出现这个异常
+//    @ExceptionHandler
+//    public void resourceNotFoundException(ResourceNotFoundException e) throws ResourceNotFoundException{
+//        log.error("发生了资源未找到异常", e);
+////        return CommonResult.failed("资源不存在！");
+//        throw  e;
+//    }
+
     @ExceptionHandler
-    public CommonResult<String> unknownException(Exception e) {
-        log.error("发生了未知异常", e);
-        return CommonResult.failed(e.getMessage());
+    public CommonResult<String> handle404(NoHandlerFoundException e) {
+        log.error("发生了404异常:{}", e.getMessage());
+        return CommonResult.notFound();
     }
+
+    @ExceptionHandler
+    public CommonResult<String> handlePropertyValueException(PropertyValueException e){
+        log.error("发生了传参异常:{}", e.getMessage());
+        return CommonResult.failed("传参异常："+e.getMessage());
+    }
+
+
+//
+//    @ExceptionHandler
+//    public CommonResult<String> unknownException(Exception e) {
+//        log.error("发生了未知异常", e);
+//        return CommonResult.failed(e.getMessage());
+//    }
+
+
 
 }

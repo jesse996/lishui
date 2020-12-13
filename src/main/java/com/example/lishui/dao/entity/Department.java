@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 /**
  * Created by jesse on 2020/12/10 下午3:42
- * id,name(部门名称),number(部门人数),sort(排序)
+ * id,name(部门名称),number(部门人数),weight(排序)
  */
 @Entity
 @Data
@@ -30,5 +30,5 @@ public class Department implements Serializable {
     private Integer number=0;
 
     @Column(nullable = false)
-    private Integer sort=0;
+    private Integer weight=0;
 }

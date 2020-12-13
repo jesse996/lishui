@@ -1,5 +1,7 @@
 package com.example.lishui.common.api;
 
+import com.alibaba.druid.wall.violation.ErrorCode;
+
 /**
  * Created by jesse on 2020/11/15 下午5:48
  */
@@ -42,6 +44,13 @@ public class CommonResult<T> {
      */
     public static <T> CommonResult<T> failed(IErrorCode errorCode) {
         return new CommonResult<T>(errorCode.getCode(), errorCode.getMessage(), null);
+    }
+
+    /**
+     * 失败返回结果
+     */
+    public static <T> CommonResult<T> notFound() {
+        return new CommonResult<T>(ResultCode.NOT_FOUND.getCode(), ResultCode.NOT_FOUND.getMessage(), null);
     }
 
     /**

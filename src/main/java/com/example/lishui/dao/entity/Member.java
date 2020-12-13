@@ -13,7 +13,7 @@ import java.io.Serializable;
 /**
  * Created by jesse on 2020/12/10 下午3:42
  *     机构成员表 (member) :
- *         id,name(姓名),job(职务),department(部门),img(照片),sort(排序)
+ *         id,name(姓名),job(职务),department(部门),img(照片),weight(排序)
  */
 @Entity
 @Data
@@ -37,5 +37,5 @@ public class Member implements Serializable {
     private String img;
 
     @Column(nullable = false)
-    private Integer sort;
+    private Integer weight;
 }

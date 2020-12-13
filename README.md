@@ -8,11 +8,11 @@
     机构简介表 （org）：
         id,description（简介），inner_org(改革办内设机构，图片链接)
     机构部门表（department）:
-        id,name(部门名称),number(部门人数),sort(排序)
+        id,name(部门名称),number(部门人数),weight(排序)
     机构成员表 (member) :
-        id,name(姓名),job(职务),department(部门),pic(照片),sort(排序)
+        id,name(姓名),job(职务),department(部门),pic(照片),weight(排序)
     通知公告表 （announcement）：
-        id,name(公告名),content(正文),username(发布人),create_at(发布时间),status(状态，0为隐藏，1为显示),sort(排序)
+        id,name(公告名),content(正文),username(发布人),create_at(发布时间),status(状态，0为隐藏，1为显示),weight(排序)
     公告规则表 (announcement_rule):
         id,rule(0代表不显示公告，1代表显示1个月公告，2代表显示2个月公告)
     大屏模块表 (my_module):
