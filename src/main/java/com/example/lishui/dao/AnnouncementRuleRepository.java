@@ -18,40 +18,41 @@ import java.util.Optional;
 /**
  * Created by jesse on 2020/12/10 下午4:01
  */
-@Api(tags = {"公告规则接口"})
-//@RepositoryRestResource()
+//@Api(tags = {"公告规则接口"})
+@RepositoryRestResource(exported = false)
+@ApiIgnore
 public interface AnnouncementRuleRepository extends JpaRepository<AnnouncementRule,Long> {
-    @Override
-    @ApiIgnore
-    @RestResource(exported = false)
-    List<AnnouncementRule> findAll();
-
-
-//    隐藏swagger中get集合接口
-    @Override
-    @ApiIgnore
-    @RestResource(exported = false)
-    Page<AnnouncementRule> findAll(Pageable pageable);
-
-//    隐藏swagger中post,put,patch接口
-    @Override
-    @ApiIgnore
-    @RestResource(exported = false)
-    <S extends AnnouncementRule> S save(S entity);
-
-//    隐藏swagger中delete接口
-    @Override
-    @RestResource(exported = false)
-    @ApiIgnore
-    void delete(AnnouncementRule entity);
-
-    @Override
-    @RestResource(exported = false)
-    void deleteById(Long id);
-
-//    隐藏swagger中get单个接口
-    @Override
-    @ApiIgnore
-    @RestResource(exported = false)
-    Optional<AnnouncementRule> findById(Long aLong);
+//    @Override
+//    @ApiIgnore
+//    @RestResource(exported = false)
+//    List<AnnouncementRule> findAll();
+//
+//
+////    隐藏swagger中get集合接口
+//    @Override
+//    @ApiIgnore
+//    @RestResource(exported = false)
+//    Page<AnnouncementRule> findAll(Pageable pageable);
+//
+////    隐藏swagger中post,put,patch接口
+//    @Override
+//    @ApiIgnore
+//    @RestResource(exported = false)
+//    <S extends AnnouncementRule> S save(S entity);
+//
+////    隐藏swagger中delete接口
+//    @Override
+//    @RestResource(exported = false)
+//    @ApiIgnore
+//    void delete(AnnouncementRule entity);
+//
+//    @Override
+//    @RestResource(exported = false)
+//    void deleteById(Long id);
+//
+////    隐藏swagger中get单个接口
+//    @Override
+//    @ApiIgnore
+//    @RestResource(exported = false)
+//    Optional<AnnouncementRule> findById(Long aLong);
 }
