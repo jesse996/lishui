@@ -13,29 +13,37 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
- * Created by jesse on 2020/12/10 下午3:42
- * id,name(部门名称),number(部门人数),weight(排序)
+ * Created by jesse on 2020/12/14 下午1:34
+ * 党建引领
  */
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ApiModel("部门实体")
-public class Department implements Serializable {
+@ApiModel("党建引领实体")
+public class Party implements Serializable {
     @Id
     @GeneratedValue
-    @ApiModelProperty("部门ID")
+    @ApiModelProperty("id")
     private Long id;
 
     @Column(nullable = false)
-    @ApiModelProperty(value = "部门名字", required = true)
+    @ApiModelProperty(value = "标题名", required = true)
     private String name;
 
     @Column(nullable = false)
-    @ApiModelProperty(value = "部门人数", required = true)
-    private Integer number = 0;
+    @ApiModelProperty(value = "封面图", required = true)
+    private String img;
 
     @Column(nullable = false)
-    @ApiModelProperty("部门排序")
-    private Integer weight = 0;
+    @ApiModelProperty("内容")
+    private String content;
+
+    @Column(nullable = false)
+    @ApiModelProperty(value = "三级模块样式，1,2", required = true)
+    private Integer style = 1;
+
+    @Column(nullable = false)
+    @ApiModelProperty("状态")
+    private Integer status;
 }

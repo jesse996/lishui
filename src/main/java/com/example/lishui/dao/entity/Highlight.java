@@ -1,5 +1,7 @@
 package com.example.lishui.dao.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,20 +21,30 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ApiModel("闪光时刻实体")
 public class Highlight implements Serializable {
     @Id
     @GeneratedValue
+    @ApiModelProperty("id")
     private Long id;
 
     @Column(nullable = false)
+    @ApiModelProperty(value = "标题名",required = true)
     private String name;
 
     @Column(nullable = false)
+    @ApiModelProperty(value = "封面图",required = true)
     private String img;
 
     @Column(nullable = false)
+    @ApiModelProperty("内容")
     private String content;
 
     @Column(nullable = false)
+    @ApiModelProperty(value = "三级模块样式，1,2",required = true)
+    private Integer style = 1;
+
+    @Column(nullable = false)
+    @ApiModelProperty("状态")
     private Integer status;
 }

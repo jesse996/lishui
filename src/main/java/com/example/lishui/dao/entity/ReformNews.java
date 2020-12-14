@@ -13,16 +13,14 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by jesse on 2020/12/10 下午3:43
- * 领导关怀表 (leader):
- * id,title,cover_img(封面图片),type(文章类型。0：图文，1：链接，2：视频),content,status(0不可见，1可见)
+ * Created by jesse on 2020/12/14 下午1:49
  */
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ApiModel("领导关怀实体")
-public class Leader implements Serializable {
+@ApiModel("改革动态实体")
+public class ReformNews implements Serializable {
     @Id
     @GeneratedValue
     @ApiModelProperty("id")
@@ -49,6 +47,10 @@ public class Leader implements Serializable {
     @Column()
     @ApiModelProperty(value = "发布人",required = true)
     private String username;
+
+    @Column()
+    @ApiModelProperty(value = "部门名称",required = true)
+    private String department;
 
     @Column(nullable = false)
     @ApiModelProperty(value = "0隐藏，1展示")

@@ -6,10 +6,8 @@ import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.PropertyValueException;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 /**
@@ -45,7 +43,8 @@ public class WebExceptionHandler {
     }
 
     @ExceptionHandler
-    public CommonResult<String> handlePropertyValueException(PropertyValueException e){
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public CommonResult<String>  handlePropertyValueException(PropertyValueException e){
         log.error("发生了传参异常:{}", e.getMessage());
         return CommonResult.failed("传参异常："+e.getMessage());
     }
