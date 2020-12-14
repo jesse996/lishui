@@ -1,11 +1,11 @@
 package com.example.lishui.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,6 +30,6 @@ public class Org implements Serializable {
     @ApiModelProperty(value = "机构职能",required = true)
     private String description = "";
 
-    @ApiModelProperty(value = "改革办内设机构")
+    @ApiModelProperty(value = "改革办内设机构图片链接")
     private String innerOrg;
 }

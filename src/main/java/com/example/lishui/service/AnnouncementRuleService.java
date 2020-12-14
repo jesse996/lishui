@@ -8,6 +8,6 @@ import java.util.Optional;
  * Created by jesse on 2020/12/13 下午6:21
  */
 public interface AnnouncementRuleService {
-    public AnnouncementRule updateAnnouncementRule(AnnouncementRule announcementRule);
-    public AnnouncementRule getAnnouncementRule();
+    AnnouncementRule updateAnnouncementRule(AnnouncementRule announcementRule);
+    AnnouncementRule getAnnouncementRule();
 }
