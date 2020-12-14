@@ -1,10 +1,10 @@
 package com.example.lishui.config;
 
-import cn.hutool.json.JSONUtil;
 import com.example.lishui.common.api.CommonResult;
 import com.example.lishui.component.RestAuthenticationEntryPoint;
 import com.example.lishui.component.RestfulAccessDeniedHandler;
 import com.example.lishui.component.UserDetailImpl;
+import com.example.lishui.component.VerifyCodeFilter;
 import com.example.lishui.dao.entity.User;
 import com.example.lishui.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,8 +18,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -28,7 +26,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 import java.io.PrintWriter;
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -44,6 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private RestfulAccessDeniedHandler restfulAccessDeniedHandler;
     @Autowired
     private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+    @Autowired
+    VerifyCodeFilter verifyCodeFilter;
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -115,6 +114,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.exceptionHandling()
                 .accessDeniedHandler(restfulAccessDeniedHandler)
                 .authenticationEntryPoint(restAuthenticationEntryPoint);
+
+        httpSecurity.addFilterBefore(verifyCodeFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.example.lishui.component;
 
 import org.springframework.security.authentication.AuthenticationServiceException;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.GenericFilterBean;
 
@@ -15,6 +16,7 @@ import java.io.IOException;
 /**
  * Created by jesse on 2020/12/14 下午4:21
  */
+@Component
 public class VerifyCodeFilter extends GenericFilterBean {
     private String defaultFilterProcessUrl = "/login";
 
@@ -28,10 +30,11 @@ public class VerifyCodeFilter extends GenericFilterBean {
             String genCaptcha = (String) request.getSession().getAttribute("index_code");
             if (!StringUtils.hasText(requestCaptcha))
                 throw new AuthenticationServiceException("验证码不能为空!");
-            if (!genCaptcha.toLowerCase().equals(requestCaptcha.toLowerCase())) {
+            if (!genCaptcha.equalsIgnoreCase(requestCaptcha)) {
                 throw new AuthenticationServiceException("验证码错误!");
             }
         }
+        request.getSession().removeAttribute("index_code");
         chain.doFilter(request, response);
     }
 }
