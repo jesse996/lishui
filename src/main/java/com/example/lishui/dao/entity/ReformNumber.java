@@ -1,15 +1,13 @@
 package com.example.lishui.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.minidev.json.annotate.JsonIgnore;
-import springfox.documentation.annotations.ApiIgnore;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
 
@@ -25,7 +23,6 @@ import java.io.Serializable;
 @ApiModel("改革指数实体")
 public class ReformNumber implements Serializable {
     @Id
-    @GeneratedValue
     @JsonIgnore
     private Long id;
 
