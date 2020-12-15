@@ -1,13 +1,13 @@
 package com.example.lishui.controller;
 
 import com.example.lishui.common.api.CommonResult;
-import com.example.lishui.common.api.ResultCode;
-import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.PropertyValueException;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.authentication.AuthenticationServiceException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 /**
@@ -49,6 +49,14 @@ public class WebExceptionHandler {
         return CommonResult.failed("传参异常："+e.getMessage());
     }
 
+    /**
+     *登陆异常
+     */
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public CommonResult<String> handleLonginException(AuthenticationServiceException e){
+        return CommonResult.failed(e.getMessage());
+    }
 
 //
 //    @ExceptionHandler
