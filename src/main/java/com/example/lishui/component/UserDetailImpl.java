@@ -1,14 +1,12 @@
 package com.example.lishui.component;
 
 import com.example.lishui.dao.entity.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -17,16 +15,20 @@ import java.util.Collections;
  */
 @AllArgsConstructor
 public class UserDetailImpl implements UserDetails {
-    private final User user;
+    private User user;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singletonList(new SimpleGrantedAuthority(user.getRole()));
-
     }
-    public Long getId(){return user.getId();}
 
+    public Long getId() {
+        return user.getId();
+    }
+
+    //登陆但返回隐藏密码
     @Override
+    @JsonIgnore
     public String getPassword() {
         return user.getPassword();
     }

@@ -18,6 +18,8 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -57,7 +59,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginProcessingUrl("/login")
                 .successHandler((req, res, authentication) -> {
-                    Object principal = authentication.getPrincipal();
+                    UserDetails principal = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//                    Object principal = authentication.getPrincipal();
+//                    principal.clearPassword();
                     res.setContentType("application/json;charset=utf-8");
                     PrintWriter writer = res.getWriter();
                     writer.write(new ObjectMapper().writeValueAsString(CommonResult.success(principal)));
@@ -150,7 +154,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     //会话管理要提供这个类
     @Bean
-    public HttpSessionEventPublisher httpSessionEventPublisher(){
+    public HttpSessionEventPublisher httpSessionEventPublisher() {
         return new HttpSessionEventPublisher();
     }
 }
