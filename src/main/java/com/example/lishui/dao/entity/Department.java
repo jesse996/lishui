@@ -27,7 +27,7 @@ public class Department implements Serializable {
     @ApiModelProperty("部门ID")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     @ApiModelProperty(value = "部门名字", required = true)
     private String name;
 

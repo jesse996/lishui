@@ -8,6 +8,7 @@ import springfox.documentation.builders.RequestParameterBuilder;
 import springfox.documentation.builders.ResponseBuilder;
 import springfox.documentation.service.ApiDescription;
 import springfox.documentation.service.Operation;
+import springfox.documentation.service.ParameterType;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.ApiListingScannerPlugin;
 import springfox.documentation.spi.service.contexts.DocumentationContext;
@@ -43,6 +44,7 @@ public class SwaggerAddition implements ApiListingScannerPlugin {
                                 .description("用户名")
 //                                .type(new TypeResolver().resolve(String.class))
                                 .name("username")
+                                .in(ParameterType.QUERY)
 //                                .defaultValue("admin")
 //                                .parameterType("query")
 //                                .parameterAccess("access")
@@ -91,7 +93,30 @@ public class SwaggerAddition implements ApiListingScannerPlugin {
         ApiDescription loginApiDescription = new ApiDescription("login", "/login", "登录接口","登录接口",
                 Arrays.asList(usernamePasswordOperation), false);
 
-        return Arrays.asList(loginApiDescription);
+        Operation logoutOperation = new OperationBuilder(new CachingOperationNameGenerator())
+                .method(HttpMethod.GET)
+                .summary("注销")
+                .notes("注销")
+//                .consumes(Collections.singleton(MediaType.APPLICATION_FORM_URLENCODED_VALUE)) // 接收参数格式
+                .produces(Collections.singleton(MediaType.APPLICATION_JSON_VALUE)) // 返回参数格式
+                .tags(Collections.singleton("注销"))
+//                .requestParameters(Arrays.asList(
+//
+//                ))
+                .responses(Collections.singleton(
+                        new ResponseBuilder().code("200").description("请求成功").build()))
+//                .responseMessages(Collections.singleton(
+//                        new ResponseMessageBuilder().code(200).message("请求成功")
+//                                .responseModel(new ModelRef(
+//                                        "xyz.gits.boot.common.core.response.RestResponse")
+//                                ).build()))
+                .build();
+
+        ApiDescription logoutApiDescription = new ApiDescription("logout", "/logout", "注销接口","注销接口",
+                Arrays.asList(logoutOperation), false);
+
+
+        return Arrays.asList(loginApiDescription,logoutApiDescription);
 
     }
     /**
