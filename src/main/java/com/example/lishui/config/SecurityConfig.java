@@ -26,8 +26,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.io.PrintWriter;
+import java.time.Duration;
+import java.util.Collections;
 import java.util.Optional;
 
 /**
@@ -59,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginProcessingUrl("/login")
                 .successHandler((req, res, authentication) -> {
-                    UserDetails principal = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+                    UserDetails principal = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //                    Object principal = authentication.getPrincipal();
 //                    principal.clearPassword();
                     res.setContentType("application/json;charset=utf-8");
@@ -109,7 +114,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .anyRequest()// 除上面外的所有请求全部需要鉴权认证
 //                .authenticated();
-                .permitAll();
+                .permitAll()
+                .and()
+                .cors()
+                .configurationSource(corsConfigurationSource());
+        ;
         // 禁用缓存
         httpSecurity.headers().cacheControl();
         // 添加JWT filter
@@ -120,6 +129,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(restAuthenticationEntryPoint);
 
         httpSecurity.addFilterBefore(verifyCodeFilter, UsernamePasswordAuthenticationFilter.class);
+    }
+
+
+    //    cors设置
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.setAllowCredentials(true);
+        corsConfiguration.setAllowedOriginPatterns(Collections.singletonList("*"));
+//        corsConfiguration.setAllowedOrigins(Collections.singletonList("*"));//不能用这个
+        corsConfiguration.setAllowedMethods(Collections.singletonList("*"));
+        corsConfiguration.setAllowedHeaders(Collections.singletonList("*"));
+        corsConfiguration.setMaxAge(Duration.ofHours(10));
+        source.registerCorsConfiguration("/**", corsConfiguration);
+        return source;
     }
 
     @Override
