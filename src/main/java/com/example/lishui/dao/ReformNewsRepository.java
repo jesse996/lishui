@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -32,4 +33,8 @@ public interface ReformNewsRepository extends JpaRepository<ReformNews, Long> {
     @RestResource(path = "findAllByCreateAtBetween")
     List<ReformNews> findAllByCreateAtBetween(@DateTimeFormat(pattern = "yyyy-MM-dd") @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd") Date start,
                                               @DateTimeFormat(pattern = "yyyy-MM-dd") @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd") Date end);
+
+    @Operation(summary = "根据部门名查找文章")
+    @RestResource(path = "findAllByDepartmentName")
+    List<ReformNews> findAllByDepartmentEquals(String departmentName, Pageable p);
 }
