@@ -22,7 +22,7 @@ import java.time.LocalDate;
 @Component
 public class VerifyCodeFilter extends OncePerRequestFilter {
     private String defaultFilterProcessUrl = "/login";
-    @Autowired
+    @Autowired 
     @Qualifier("handlerExceptionResolver")
     private HandlerExceptionResolver resolver;
 
