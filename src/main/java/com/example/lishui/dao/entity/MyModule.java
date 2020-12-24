@@ -35,6 +35,10 @@ public class MyModule implements Serializable {
     @Column(nullable = false)
     private String icon;
 
+    @ApiModelProperty("图标id")
+    @Column(nullable = false)
+    private Integer iconId;
+
     @ApiModelProperty("0隐藏，1显示")
     @Column(nullable = false)
     private Integer status = 1;
