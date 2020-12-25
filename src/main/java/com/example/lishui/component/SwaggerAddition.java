@@ -90,7 +90,7 @@ public class SwaggerAddition implements ApiListingScannerPlugin {
 //                                ).build()))
                 .build();
 
-        ApiDescription loginApiDescription = new ApiDescription("login", "/login", "登录接口","登录接口",
+        ApiDescription loginApiDescription = new ApiDescription("login", "/api/login", "登录接口","登录接口",
                 Arrays.asList(usernamePasswordOperation), false);
 
         Operation logoutOperation = new OperationBuilder(new CachingOperationNameGenerator())
@@ -112,7 +112,7 @@ public class SwaggerAddition implements ApiListingScannerPlugin {
 //                                ).build()))
                 .build();
 
-        ApiDescription logoutApiDescription = new ApiDescription("logout", "/logout", "注销接口","注销接口",
+        ApiDescription logoutApiDescription = new ApiDescription("logout", "/api/logout", "注销接口","注销接口",
                 Arrays.asList(logoutOperation), false);
 
 

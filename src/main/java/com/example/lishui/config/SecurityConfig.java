@@ -1,7 +1,10 @@
 package com.example.lishui.config;
 
 import com.example.lishui.common.api.CommonResult;
-import com.example.lishui.component.*;
+import com.example.lishui.component.RestAuthenticationEntryPoint;
+import com.example.lishui.component.RestfulAccessDeniedHandler;
+import com.example.lishui.component.UserDetailImpl;
+import com.example.lishui.component.VerifyCodeFilter;
 import com.example.lishui.dao.entity.User;
 import com.example.lishui.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,7 +25,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.context.SecurityContextPersistenceFilter;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -61,7 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .and()
                 .formLogin()
-                .loginProcessingUrl("/login")
+                .loginProcessingUrl("/api/login")
                 .successHandler((req, res, authentication) -> {
                     UserDetails principal = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //                    Object principal = authentication.getPrincipal();
@@ -82,7 +84,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
-                .logoutUrl("/logout")
+                .logoutUrl("/api/logout")
                 .logoutSuccessHandler((req, res, authentication) -> {
                     res.setContentType("application/json;charset=utf-8");
                     PrintWriter writer = res.getWriter();
