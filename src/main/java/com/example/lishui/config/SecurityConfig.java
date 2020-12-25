@@ -1,10 +1,7 @@
 package com.example.lishui.config;
 
 import com.example.lishui.common.api.CommonResult;
-import com.example.lishui.component.RestAuthenticationEntryPoint;
-import com.example.lishui.component.RestfulAccessDeniedHandler;
-import com.example.lishui.component.UserDetailImpl;
-import com.example.lishui.component.VerifyCodeFilter;
+import com.example.lishui.component.*;
 import com.example.lishui.dao.entity.User;
 import com.example.lishui.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,6 +22,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.context.SecurityContextPersistenceFilter;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -50,6 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
     @Autowired
     VerifyCodeFilter verifyCodeFilter;
+
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -130,6 +129,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         httpSecurity.addFilterBefore(verifyCodeFilter, UsernamePasswordAuthenticationFilter.class);
     }
+
 
 
     //    cors设置
