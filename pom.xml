@@ -33,10 +33,10 @@
             <artifactId>spring-boot-starter-data-rest</artifactId>
         </dependency>
 <!--       为了修改session的same-site属性-->
-        <dependency>
-            <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session-core</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.session</groupId>-->
+<!--            <artifactId>spring-session-core</artifactId>-->
+<!--        </dependency>-->
 <!--        <dependency>-->
 <!--            <groupId>org.springframework.data</groupId>-->
 <!--            <artifactId>spring-data-rest-hal-explorer</artifactId>-->

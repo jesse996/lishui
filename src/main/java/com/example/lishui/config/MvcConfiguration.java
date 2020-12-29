@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 @Configuration
 public class MvcConfiguration implements WebMvcConfigurer {
+//    tomcat设置SameSite为NONE
     @Bean
     public TomcatContextCustomizer sameSiteCookiesConfig() {
         return context -> {
