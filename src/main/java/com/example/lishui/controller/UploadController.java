@@ -1,33 +1,27 @@
 package com.example.lishui.controller;
 
-import cn.hutool.core.lang.UUID;
-import cn.hutool.json.JSONObject;
 import com.example.lishui.common.api.CommonResult;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.boot.system.ApplicationHome;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Random;
 
 /**
  * Created by jesse on 2020/11/19 下午7:06
  */
 @Slf4j
 @RestController
+@RequestMapping("/api")
 public class UploadController {
 //    private static final String filePath = "classpath:/static/";
 //    private static final String UPLOAD_PATH_PREFIX = "static/";
