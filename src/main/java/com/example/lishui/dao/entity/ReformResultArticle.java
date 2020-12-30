@@ -9,24 +9,21 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Created by jesse on 2020/12/10 下午3:43
- * 领导关怀表 (leader):
- * id,title,cover_img(封面图片),type(文章类型。0：图文，1：链接，2：视频),content,status(0不可见，1可见)
- */
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ApiModel("领导关怀实体")
-public class Leader implements Serializable {
+@ApiModel("改革成果文章实体")
+public class ReformResultArticle {
     @Id
     @GeneratedValue
     @ApiModelProperty("id")
     private Long id;
+
+    @ApiModelProperty("文章所属二级模块ID")
+    private Long moduleId;
 
     @Column(nullable = false)
     @ApiModelProperty(value = "分类",required = true)

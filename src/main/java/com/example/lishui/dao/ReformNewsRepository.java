@@ -34,7 +34,7 @@ public interface ReformNewsRepository extends JpaRepository<ReformNews, Long> {
     List<ReformNews> findAllByCreateAtBetween(@DateTimeFormat(pattern = "yyyy-MM-dd") @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd") Date start,
                                               @DateTimeFormat(pattern = "yyyy-MM-dd") @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd") Date end);
 
-    @Operation(summary = "根据部门名查找文章")
+    @Operation(summary = "根据类别查找文章")
     @RestResource(path = "findAllByDepartmentName")
-    List<ReformNews> findAllByDepartmentEquals(String departmentName, Pageable p);
+    List<ReformNews> findAllByTagEquals(String tag, Pageable p);
 }
