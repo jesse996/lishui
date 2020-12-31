@@ -31,13 +31,9 @@ public class OutstandingCase implements Serializable {
     @Column(nullable = false)
     private String name;
 
-    @ApiModelProperty("图标")
+    @ApiModelProperty("封面图url")
     @Column(nullable = false)
-    private String icon;
-
-    @ApiModelProperty("图标id")
-    @Column(nullable = false)
-    private Integer iconId;
+    private String img;
 
     @ApiModelProperty("0隐藏，1显示")
     @Column(nullable = false)

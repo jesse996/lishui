@@ -14,8 +14,9 @@ class LishuiApplicationTests {
     @Test
     void contextLoads() {
 //        Duration.between(LocalTime.now(),LocalTime.now());
-
-
+//        String fileName="jewjkj";
+//        String suffixName = fileName.substring(fileName.lastIndexOf("."));
+//        System.out.println(suffixName);
     }
 
 //    @Test
