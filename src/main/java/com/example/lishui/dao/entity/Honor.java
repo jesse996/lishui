@@ -5,11 +5,10 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by jesse on 2020/12/10 下午3:43
@@ -42,4 +41,9 @@ public class Honor {
     @ApiModelProperty(value = "0隐藏，1展示")
     private Integer status = 1;
 
+    @ApiModelProperty(value = "创建时间")
+    @CreationTimestamp
+    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createAt;
 }

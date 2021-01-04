@@ -36,7 +36,7 @@ public class UploadController {
         //获取文件名
         String fileName = file.getOriginalFilename();
 //        //获取文件后缀名
-        String suffixName = "";
+        String suffixName = ".jpg";
         try {
             suffixName = fileName.substring(fileName.lastIndexOf("."));
         } catch (Exception e) {
