@@ -46,4 +46,8 @@ public class MyModule implements Serializable {
     @ApiModelProperty(value = "2级模块样式", allowableValues = "range[1,2]",required = true)
     @Column(nullable = false)
     private Integer style = 1;
+
+    @ApiModelProperty(value = "是否可以删除,1可以删，0不可以删")
+    @Column(nullable = false)
+    private Integer deletable = 1;
 }

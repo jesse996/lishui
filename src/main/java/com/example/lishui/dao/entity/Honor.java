@@ -37,6 +37,10 @@ public class Honor {
     @ApiModelProperty(value = "证书详情", required = true)
     private String content = "";
 
+    @Column()
+    @ApiModelProperty(value = "发布人",required = true)
+    private String username;
+
     @Column(nullable = false)
     @ApiModelProperty(value = "0隐藏，1展示")
     private Integer status = 1;

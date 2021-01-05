@@ -18,10 +18,6 @@ import java.util.List;
 
 @Api(tags = "优秀案例文章接口")
 public interface OutstandingCaseArticleRepository extends JpaRepository<OutstandingCaseArticle,Long> {
-//    @Operation(summary = "根据上一级id查找文章")
-//    @RestResource(path = "findAllByModuleId")
-//    List<OutstandingCaseArticle> findAllByModuleId(Long moduleId, Pageable p);
-
     @Operation(summary = "根据标题或发布人查找文章")
     @RestResource(path = "findAllByTitleOrAuthor")
     @Query(value = "select  u from #{#entityName} u where u.title like %:search% or u.username like %:search%")

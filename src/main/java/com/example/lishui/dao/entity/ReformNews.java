@@ -51,10 +51,6 @@ public class ReformNews implements Serializable {
     @Column(nullable = false)
     @ApiModelProperty(value = "分类",required = true)
     private String tag = "未分类";
-//    @Column(name = "department_id")
-//    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.REFRESH})
-//    @JoinColumn(name = "department_id")
-//    private Department department;
 
     @Column(nullable = false)
     @ApiModelProperty(value = "0隐藏，1展示")

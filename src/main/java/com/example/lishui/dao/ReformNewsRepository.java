@@ -25,7 +25,6 @@ public interface ReformNewsRepository extends JpaRepository<ReformNews, Long> {
     @RestResource(path = "findAllByTitleOrAuthor")
     @Query(value = "select  u from #{#entityName} u where u.title like %:search% or u.username like %:search%")
     List<ReformNews> findAllByTitleOrUsername(@Param("search") String search);
-//    List<ReformNews> findAllByTitleContainingOrUsernameContaining(@Param("search") String search);
 
     @Operation(summary = "根据时间范围查找文章")
     @ApiImplicitParams({@ApiImplicitParam(name = "start", value = "开始时间，形如：2020-01-01", example = "2020-01-01"),
@@ -34,7 +33,7 @@ public interface ReformNewsRepository extends JpaRepository<ReformNews, Long> {
     List<ReformNews> findAllByCreateAtBetween(@DateTimeFormat(pattern = "yyyy-MM-dd") @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd") Date start,
                                               @DateTimeFormat(pattern = "yyyy-MM-dd") @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd") Date end);
 
-    @Operation(summary = "根据类别查找文章")
+    @Operation(summary = "根据上一级查找文章")
     @RestResource(path = "findAllByTagName")
     List<ReformNews> findAllByTagEquals(String tag, Pageable p);
 }
