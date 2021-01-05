@@ -23,30 +23,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 @ApiModel("闪光时刻实体")
 public class Highlight implements Serializable {
-//    @Id
-//    @GeneratedValue
-//    @ApiModelProperty("id")
-//    private Long id;
-//
-//    @Column(nullable = false)
-//    @ApiModelProperty(value = "标题名",required = true)
-//    private String name;
-//
-//    @Column(nullable = false)
-//    @ApiModelProperty(value = "封面图",required = true)
-//    private String img;
-//
-//    @Column(nullable = false)
-//    @ApiModelProperty("内容")
-//    private String content;
-//
-//    @Column(nullable = false)
-//    @ApiModelProperty(value = "三级模块样式，1,2",required = true)
-//    private Integer style = 1;
-//
-//    @Column(nullable = false)
-//    @ApiModelProperty("状态")
-//    private Integer status;
     @Id
     @GeneratedValue
     private Long id;
