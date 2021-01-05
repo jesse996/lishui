@@ -48,6 +48,6 @@ public class MyModule implements Serializable {
     private Integer style = 1;
 
     @ApiModelProperty(value = "是否可以删除,1可以删，0不可以删")
-    @Column(nullable = false,columnDefinition = "deletable DEFAULT 1")
+    @Column(nullable = false,columnDefinition = "deletable int DEFAULT 1")
     private Integer deletable = 1;
 }
