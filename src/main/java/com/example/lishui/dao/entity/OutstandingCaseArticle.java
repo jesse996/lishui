@@ -23,9 +23,6 @@ public class OutstandingCaseArticle implements Serializable {
     @ApiModelProperty("id")
     private Long id;
 
-    @ApiModelProperty("文章所属二级模块ID")
-    private Long moduleId;
-
     @Column(nullable = false)
     @ApiModelProperty(value = "分类",required = true)
     private String tag = "未分类";

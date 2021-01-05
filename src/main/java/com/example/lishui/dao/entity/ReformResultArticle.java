@@ -22,12 +22,10 @@ public class ReformResultArticle {
     @ApiModelProperty("id")
     private Long id;
 
-    @ApiModelProperty("文章所属二级模块ID")
-    private Long moduleId;
-
+    //分类就是上一级的名字
     @Column(nullable = false)
     @ApiModelProperty(value = "分类",required = true)
-    private String tag = "未分类";
+    private String tag ;
 
     @Column(nullable = false)
     @ApiModelProperty(value = "标题",required = true)
