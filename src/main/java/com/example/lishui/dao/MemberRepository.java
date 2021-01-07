@@ -3,11 +3,11 @@ package com.example.lishui.dao;
 import com.example.lishui.dao.entity.Member;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -20,5 +20,5 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
 
     @Operation(summary = "根据名字查找")
-    List<Member> findAllByNameContains(String name, Pageable p);
+    Page<Member> findAllByNameContains(String name, Pageable p);
 }

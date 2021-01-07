@@ -35,9 +35,6 @@ public class Party implements Serializable {
     @ApiModelProperty(value = "封面图", required = true)
     private String img;
 
-    @Column(nullable = false)
-    @ApiModelProperty("内容")
-    private String content;
 
     @Column(nullable = false)
     @ApiModelProperty(value = "三级模块样式，1,2", required = true)
