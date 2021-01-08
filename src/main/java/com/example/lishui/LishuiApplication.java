@@ -9,7 +9,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import springfox.documentation.oas.annotations.EnableOpenApi;
 
 import java.util.Optional;
 
@@ -34,7 +33,7 @@ class myRunner implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         Optional<User> user = userService.findUserByUsername("admin");
         if (user.isEmpty()) {
-            User admin = new User(null, "admin", passwordEncoder.encode("123456"), "110", "ROLE_admin", null, null, null);
+            User admin = new User(null, "admin", passwordEncoder.encode("123456"), "110", "ROLE_admin", null, null,true, null);
             userService.addUser(admin);
         }
     }

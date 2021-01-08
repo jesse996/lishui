@@ -1,7 +1,5 @@
 package com.example.lishui.dao.entity;
 
-import com.example.lishui.dao.AnnouncementRepository;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -9,13 +7,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.beans.factory.annotation.Autowired;
-import springfox.documentation.annotations.ApiIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Created by jesse on 2020/12/10 下午3:42
@@ -47,6 +42,7 @@ public class Announcement implements Serializable {
     @ApiModelProperty(value = "前端不用传创建时间，后端自动生成")
     @CreationTimestamp
     @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createAt;
 
     //0不可见，1可见

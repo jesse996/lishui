@@ -24,4 +24,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     @Operation(summary = "根据部门名字查找")
     Page<Member> findAllByDepartment(String department, Pageable p);
+
+    @Operation(summary = "根据部门名获取人数")
+    Integer countByDepartment(String department);
 }
