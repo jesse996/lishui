@@ -20,7 +20,7 @@ import java.util.Date;
  * @Author: jesse
  * @Date: 2021/1/8 2:23 下午
  */
-@Api(tags = "优秀案例文章接口")
+@Api(tags = "党建引领文章接口")
 public interface PartyArticleRepository extends JpaRepository<PartyArticle,Long> {
     @Operation(summary = "根据标题或发布人查找文章")
     @RestResource(path = "findAllByTitleOrAuthor")

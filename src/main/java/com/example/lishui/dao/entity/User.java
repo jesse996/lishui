@@ -1,6 +1,7 @@
 package com.example.lishui.dao.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,6 +24,7 @@ import java.sql.Timestamp;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ApiModel("用户实体")
 public class User implements Serializable {
     @Id
     @GeneratedValue
@@ -55,6 +57,9 @@ public class User implements Serializable {
     @UpdateTimestamp
     @Column(nullable = false)
     private Timestamp updateAt;
+
+    @Column(nullable = false)
+    private Boolean status = true;
 
 //    @Column(columnDefinition = "TIMESTAMP")
     private Timestamp lastLoginDateTime;
