@@ -31,9 +31,9 @@ public class Department implements Serializable {
     @ApiModelProperty(value = "部门名字", required = true)
     private String name;
 
-    @Column(nullable = false)
-    @ApiModelProperty(value = "部门人数", required = true)
-    private Integer number = 0;
+//    @Column(nullable = false)
+//    @ApiModelProperty(value = "部门人数", required = true)
+//    private Integer number = 0;
 
     @Column(nullable = false)
     @ApiModelProperty("部门排序")
