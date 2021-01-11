@@ -1,7 +1,6 @@
 package com.example.lishui.component;
 
 import com.example.lishui.dao.entity.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -26,9 +25,10 @@ public class UserDetailImpl implements UserDetails {
         return user.getId();
     }
 
-    //登陆返回隐藏密码
+//    登陆返回隐藏密码
     @Override
-    @JsonIgnore
+    //返回密码
+//    @JsonIgnore
     public String getPassword() {
         return user.getPassword();
     }
