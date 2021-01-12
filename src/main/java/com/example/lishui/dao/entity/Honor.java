@@ -45,6 +45,11 @@ public class Honor {
     @ApiModelProperty(value = "0隐藏，1展示")
     private Integer status = 1;
 
+    @Column(nullable = false,columnDefinition = "tinyint(1) default 1")
+    @ApiModelProperty(value = "ture就是横版，false是竖版")
+    private Boolean isHorizontal = true;
+
+
     @ApiModelProperty(value = "创建时间")
     @CreationTimestamp
     @Column(nullable = false)

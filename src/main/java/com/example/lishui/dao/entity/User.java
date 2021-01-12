@@ -60,7 +60,6 @@ public class User implements Serializable {
     @Column(nullable = false)
     private Boolean status = true;
 
-//    @Column(columnDefinition = "TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastLoginDateTime;
 //    @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
