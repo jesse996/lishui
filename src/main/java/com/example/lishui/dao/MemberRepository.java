@@ -15,6 +15,10 @@ import java.util.Optional;
  */
 @Api(tags = "机构成员接口")
 public interface MemberRepository extends JpaRepository<Member, Long> {
+    @Override
+    @Query(value = "select u from #{#entityName} u order by u.weight asc")
+    Page<Member> findAll(Pageable pageable);
+
     @Query(value = "select max(weight) from member", nativeQuery = true)
     Optional<Integer> findMaxWeight();
 

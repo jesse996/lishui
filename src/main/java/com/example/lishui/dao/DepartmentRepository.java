@@ -15,6 +15,10 @@ import java.util.Optional;
  */
 @Api(tags = "部门接口")
 public interface DepartmentRepository extends JpaRepository<Department,Long> {
+    @Override
+    @Query(value = "select u from #{#entityName} u order by u.weight asc")
+    Page<Department> findAll(Pageable pageable);
+
     @Query(value = "select max(weight) from department",nativeQuery = true)
     Optional<Integer> findMaxWeight();
 

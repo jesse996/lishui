@@ -33,7 +33,7 @@ class myRunner implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         Optional<User> user = userService.findUserByUsername("admin");
         if (user.isEmpty()) {
-            User admin = new User(null, "admin", passwordEncoder.encode("123456"), "110", "ROLE_admin", null, null,true, null);
+            User admin = new User(null, "admin", passwordEncoder.encode("123456"), "110", "ROLE_admin", null,null,true);
             userService.addUser(admin);
         }
     }

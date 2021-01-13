@@ -22,6 +22,10 @@ import java.util.Date;
  */
 @Api(tags = "闪光时刻文章接口")
 public interface HighlightArticleRepository extends JpaRepository<HighlightArticle,Long> {
+    @Override
+    @Query(value = "select u from #{#entityName} u order by u.weight asc")
+    Page<HighlightArticle> findAll(Pageable pageable);
+
     @Operation(summary = "根据标题或发布人查找文章")
     @RestResource(path = "findAllByTitleOrAuthor")
     @Query(value = "select  u from #{#entityName} u where u.title like %:search% or u.username like %:search%")
