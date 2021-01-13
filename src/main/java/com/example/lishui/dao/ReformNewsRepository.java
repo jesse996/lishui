@@ -22,10 +22,6 @@ import java.util.List;
  */
 @Api(tags = "改革动态接口")
 public interface ReformNewsRepository extends JpaRepository<ReformNews, Long> {
-    @Override
-    @Query(value = "select u from #{#entityName} u order by u.weight asc")
-    Page<ReformNews> findAll(Pageable pageable);
-
     @Operation(summary = "根据标题或发布人查找文章")
     @RestResource(path = "findAllByTitleOrAuthor")
     @Query(value = "select  u from #{#entityName} u where u.title like %:search% or u.username like %:search%")

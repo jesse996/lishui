@@ -22,10 +22,6 @@ import java.util.Date;
  */
 @Api(tags = "党建引领文章接口")
 public interface PartyArticleRepository extends JpaRepository<PartyArticle,Long> {
-    @Override
-    @Query(value = "select u from #{#entityName} u order by u.weight asc")
-    Page<PartyArticle> findAll(Pageable pageable);
-
     @Operation(summary = "根据标题或发布人查找文章")
     @RestResource(path = "findAllByTitleOrAuthor")
     @Query(value = "select  u from #{#entityName} u where u.title like %:search% or u.username like %:search%")

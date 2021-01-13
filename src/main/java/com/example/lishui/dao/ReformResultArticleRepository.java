@@ -21,9 +21,6 @@ public interface ReformResultArticleRepository extends JpaRepository<ReformResul
 //    @Operation(summary = "根据上一级id查找文章")
 //    @RestResource(path = "findAllByModuleId")
 //    List<ReformResultArticle> findAllByModuleId(Long moduleId, Pageable p);
-    @Override
-    @Query(value = "select u from #{#entityName} u order by u.weight asc")
-    Page<ReformResultArticle> findAll(Pageable pageable);
 
     @Operation(summary = "根据标题或发布人查找文章")
     @RestResource(path = "findAllByTitleOrAuthor")

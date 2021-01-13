@@ -18,10 +18,6 @@ import java.util.Date;
 
 @Api(tags = "优秀案例文章接口")
 public interface OutstandingCaseArticleRepository extends JpaRepository<OutstandingCaseArticle,Long> {
-    @Override
-    @Query(value = "select u from #{#entityName} u order by u.weight asc")
-    Page<OutstandingCaseArticle> findAll(Pageable pageable);
-
     @Operation(summary = "根据标题或发布人查找文章")
     @RestResource(path = "findAllByTitleOrAuthor")
     @Query(value = "select  u from #{#entityName} u where u.title like %:search% or u.username like %:search%")
