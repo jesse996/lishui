@@ -49,6 +49,9 @@ public class Honor {
     @ApiModelProperty(value = "ture就是横版，false是竖版")
     private Boolean isHorizontal = true;
 
+    @Column(nullable = false,columnDefinition = "int not null default 0")
+    @ApiModelProperty(value = "排序")
+    private Integer weight;
 
     @ApiModelProperty(value = "创建时间")
     @CreationTimestamp

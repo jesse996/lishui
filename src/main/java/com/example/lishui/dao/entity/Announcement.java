@@ -45,12 +45,14 @@ public class Announcement implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createAt;
 
+
     //0不可见，1可见
     @ApiModelProperty(value = "1可见，0不可见", example = "1")
     @Column(nullable = false)
     private Integer status = 1;
 
-    @Column(nullable = false)
-    private Integer weight = 0;
+    @Column(nullable = false,columnDefinition = "int not null default 0")
+    @ApiModelProperty(value = "排序")
+    private Integer weight;
 
 }

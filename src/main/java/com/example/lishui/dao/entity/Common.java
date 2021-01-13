@@ -41,6 +41,10 @@ public class Common {
     @Column(nullable = false)
     private Integer status = 1;
 
+    @Column(nullable = false,columnDefinition = "int not null default 0")
+    @ApiModelProperty(value = "排序")
+    private Integer weight;
+
     @ApiModelProperty(value = "2级模块样式", allowableValues = "range[1,2]",required = true)
     @Column(nullable = false)
     private Integer style = 1;

@@ -44,8 +44,8 @@ public class Member implements Serializable {
     @ApiModelProperty(value = "成员照片", required = true)
     private String img;
 
-    @Column(nullable = false)
-    @ApiModelProperty(value = "成员排序")
+    @Column(nullable = false,columnDefinition = "int not null default 0")
+    @ApiModelProperty(value = "排序")
     private Integer weight;
 
     @Column(nullable = false)

@@ -31,7 +31,7 @@ public class ReformNewsTag {
     @ApiModelProperty(value = "分类名字", required = true)
     private String name;
 
-    @Column(nullable = false)
-    @ApiModelProperty("分类排序")
-    private Integer weight = 0;
+    @Column(nullable = false,columnDefinition = "int not null default 0")
+    @ApiModelProperty(value = "排序")
+    private Integer weight;
 }

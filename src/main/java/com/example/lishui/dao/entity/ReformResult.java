@@ -42,4 +42,8 @@ public class ReformResult implements Serializable {
     @ApiModelProperty(value = "2级模块样式", allowableValues = "range[1,2]",required = true)
     @Column(nullable = false)
     private Integer style = 1;
+
+    @Column(nullable = false,columnDefinition = "int not null default 0")
+    @ApiModelProperty(value = "排序")
+    private Integer weight;
 }

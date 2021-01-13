@@ -43,4 +43,8 @@ public class Party implements Serializable {
     @Column(nullable = false)
     @ApiModelProperty("状态")
     private Integer status;
+
+    @Column(nullable = false,columnDefinition = "int not null default 0")
+    @ApiModelProperty(value = "排序")
+    private Integer weight;
 }

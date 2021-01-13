@@ -56,6 +56,10 @@ public class HighlightArticle {
     @ApiModelProperty(value = "0隐藏，1展示")
     private Integer status = 1;
 
+    @Column(nullable = false,columnDefinition = "int not null default 0")
+    @ApiModelProperty(value = "排序")
+    private Integer weight;
+
     @ApiModelProperty(value = "创建时间")
     @CreationTimestamp
     @Column(nullable = false)

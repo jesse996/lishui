@@ -46,4 +46,8 @@ public class Highlight implements Serializable {
     @ApiModelProperty(value = "是否可以删除,1可以删，0不可以删")
     @Column(nullable = false,columnDefinition = "int DEFAULT 1")
     private Integer deletable = 1;
+
+    @Column(nullable = false,columnDefinition = "int not null default 0")
+    @ApiModelProperty(value = "排序")
+    private Integer weight;
 }

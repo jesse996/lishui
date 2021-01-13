@@ -67,6 +67,10 @@ public class CommonArticle {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createAt;
 
+    @Column(nullable = false,columnDefinition = "int not null default 0")
+    @ApiModelProperty(value = "排序")
+    private Integer weight;
+
     @ApiModelProperty(value = "更新时间")
     @UpdateTimestamp
     @Column(nullable = false)

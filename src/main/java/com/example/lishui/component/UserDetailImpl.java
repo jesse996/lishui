@@ -25,10 +25,8 @@ public class UserDetailImpl implements UserDetails {
         return user.getId();
     }
 
-//    登陆返回隐藏密码
+
     @Override
-    //返回密码
-//    @JsonIgnore
     public String getPassword() {
         return user.getPassword();
     }
