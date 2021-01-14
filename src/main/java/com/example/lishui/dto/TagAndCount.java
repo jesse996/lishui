@@ -17,4 +17,5 @@ public class TagAndCount implements Serializable {
     private Long id;
     private String name;
     private Integer number;
+    private Integer weight;
 }
