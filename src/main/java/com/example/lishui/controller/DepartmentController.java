@@ -35,6 +35,7 @@ public class DepartmentController {
     public List<DepartmentWithCount> findAllDepartment() {
         return departmentRepository.findAll().stream()
                 .map(x -> new DepartmentWithCount(x,memberRepository.countByDepartment(x.getName())))
+                .sorted(Comparator.comparingInt(DepartmentWithCount::getWeight))
                 .collect(Collectors.toList());
     }
 
