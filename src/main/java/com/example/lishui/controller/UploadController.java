@@ -38,14 +38,16 @@ public class UploadController {
 //        //获取文件后缀名
         String suffixName = ".jpg";
         try {
+            assert fileName != null;
             suffixName = fileName.substring(fileName.lastIndexOf("."));
         } catch (Exception e) {
+            log.error(e.getMessage());
 //            return CommonResult.failed("上传文件无后缀，请检查重新上传");
         }
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmSS");
         Random random = new Random();
         //生成以 日期+随机数+后缀名的  新文件名  例 20200414_20000010.jpg
-        String tempFileName = new StringBuilder().append(sdf.format(new Date())).append(random.nextInt(100)).append(suffixName).toString();
+        String tempFileName = sdf.format(new Date()) + random.nextInt(100) + suffixName;
 
         String path = new ApplicationHome(getClass()).getDir().getPath();
         Path uploadPath = Paths.get(path + "/upload/");
