@@ -21,6 +21,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Slf4j
+@Cacheable // 缓存
 @ApiModel("公告实体")
 public class Announcement implements Serializable {
     @Id

@@ -21,6 +21,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Cacheable // 缓存
 @ApiModel("领导关怀实体")
 public class Leader implements Serializable {
     @Id

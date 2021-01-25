@@ -21,6 +21,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Cacheable // 缓存
 @ApiModel("用户实体")
 public class User implements Serializable {
     @Id

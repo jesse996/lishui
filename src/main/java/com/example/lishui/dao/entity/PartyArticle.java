@@ -19,6 +19,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Cacheable // 缓存
 @ApiModel("党建引领文章实体")
 public class PartyArticle {
     @Id

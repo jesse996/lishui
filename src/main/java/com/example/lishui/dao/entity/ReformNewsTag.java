@@ -6,10 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * @Author: jesse
@@ -19,6 +16,7 @@ import javax.persistence.Id;
 @Entity
 @Data
 @AllArgsConstructor
+@Cacheable // 缓存
 @NoArgsConstructor
 @ApiModel("改革动态分类实体")
 public class ReformNewsTag {

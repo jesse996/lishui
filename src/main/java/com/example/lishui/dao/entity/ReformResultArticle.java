@@ -15,6 +15,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Cacheable // 缓存
 @ApiModel("改革成果文章实体")
 public class ReformResultArticle {
     @Id

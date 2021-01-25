@@ -19,6 +19,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Cacheable // 缓存
 @ApiModel("改革动态实体")
 public class ReformNews implements Serializable {
     @Id

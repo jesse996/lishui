@@ -20,6 +20,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Cacheable // 缓存
 @ApiModel("通用文章实体")
 public class CommonArticle {
     @Id

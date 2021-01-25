@@ -16,6 +16,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Cacheable // 缓存
 @ApiModel("优秀案例文章实体")
 public class OutstandingCaseArticle implements Serializable {
     @Id

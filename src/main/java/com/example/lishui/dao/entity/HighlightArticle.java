@@ -19,6 +19,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Cacheable // 缓存
 @ApiModel("闪光时刻文章实体")
 public class HighlightArticle {
     @Id
