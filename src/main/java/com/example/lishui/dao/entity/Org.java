@@ -17,7 +17,6 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Cacheable // 缓存
 @ApiModel("机构简介实体")
 public class Org implements Serializable {
     @Id

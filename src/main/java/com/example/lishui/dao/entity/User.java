@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,6 +23,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Cacheable // 缓存
+@org.hibernate.annotations.Cache(region = "user", usage = CacheConcurrencyStrategy.READ_WRITE ) // 缓存名字以及策略
 @ApiModel("用户实体")
 public class User implements Serializable {
     @Id

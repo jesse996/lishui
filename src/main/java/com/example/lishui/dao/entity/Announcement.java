@@ -6,8 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.CreationTimestamp;
-
+import org.hibernate.annotations.Cache;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -22,6 +23,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Slf4j
 @Cacheable // 缓存
+@Cache(region = "announcement", usage = CacheConcurrencyStrategy.READ_WRITE ) // 缓存名字以及策略
 @ApiModel("公告实体")
 public class Announcement implements Serializable {
     @Id

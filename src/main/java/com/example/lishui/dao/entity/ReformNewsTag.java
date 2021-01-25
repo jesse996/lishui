@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
@@ -17,6 +18,7 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @Cacheable // 缓存
+@org.hibernate.annotations.Cache(region = "reform_news_tag", usage = CacheConcurrencyStrategy.READ_WRITE ) // 缓存名字以及策略
 @NoArgsConstructor
 @ApiModel("改革动态分类实体")
 public class ReformNewsTag {

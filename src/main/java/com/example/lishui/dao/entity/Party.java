@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,6 +19,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Cacheable // 缓存
+@org.hibernate.annotations.Cache(region = "party", usage = CacheConcurrencyStrategy.READ_WRITE ) // 缓存名字以及策略
 @ApiModel("党建引领实体")
 public class Party implements Serializable {
     @Id
