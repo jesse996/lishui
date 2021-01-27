@@ -40,7 +40,7 @@ public class ReformNewsController {
     @Operation(summary = "获取所有分类和分类对应的数量")
     List<TagAndCount> findAllTagsAndCount() {
         List<ReformNewsTag> all = tagRepository.findAll();
-        return all.stream().map(x -> new TagAndCount(x.getId(), x.getName(), newsRepository.countByTag(x.getName()), x.getWeight())).sorted(Comparator.comparingInt(TagAndCount::getWeight)).collect(Collectors.toList());
+        return all.stream().map(x -> new TagAndCount(x.getId(), x.getName(), tagRepository.countByName(x.getName()), x.getWeight())).sorted(Comparator.comparingInt(TagAndCount::getWeight)).collect(Collectors.toList());
     }
 
 //    @PostMapping("/tag")

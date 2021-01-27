@@ -14,5 +14,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 @Api(tags = "通用接口")
 public interface CommonRepository extends JpaRepository<Common,Long> {
     @Operation(summary = "根据一级模块名称查找所有二级")
-    Page<Common> findAllByModule(String module, Pageable p);
+    Page<Common> findAllByModuleId(Long moduleId, Pageable p);
 }

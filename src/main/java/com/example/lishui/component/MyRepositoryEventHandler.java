@@ -48,4 +48,19 @@ public class MyRepositoryEventHandler {
 //        var maxWeight = announcementRepository.findMaxWeight().orElse(0);
 //        member.setWeight(maxWeight + 1);
 //    }
+
+//    @Autowired
+//    ReformNewsRepository reformNewsRepository;
+//    @Autowired
+//    ReformNewsTagRepository reformNewsTagRepository;
+//    //修改改革动态的tag的时候修改文章的tag
+//    @HandleAfterSave
+//    public void handleAfterSave(ReformNewsTag reformNewsTag) {
+//        Long id = reformNewsTag.getId();
+//        String oldName = reformNewsTagRepository.findById(id).get().getName();
+//        String newName = reformNewsTag.getName();
+//        List<ReformNews> list = reformNewsRepository.findAllByTagEquals(oldName);
+//        list = list.stream().peek(x -> x.setTag(newName)).collect(Collectors.toList());
+//        reformNewsRepository.saveAll(list);
+//    }
 }

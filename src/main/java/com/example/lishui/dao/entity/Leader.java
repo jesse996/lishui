@@ -32,10 +32,6 @@ public class Leader implements Serializable {
     private Long id;
 
     @Column(nullable = false)
-    @ApiModelProperty(value = "分类",required = true)
-    private String tag = "未分类";
-
-    @Column(nullable = false)
     @ApiModelProperty(value = "标题",required = true)
     private String title;
 
@@ -63,7 +59,7 @@ public class Leader implements Serializable {
 
     @Column(nullable = false,columnDefinition = "int not null default 0")
     @ApiModelProperty(value = "排序")
-    private Integer weight;
+    private Integer weight = 0;
 
     @ApiModelProperty(value = "创建时间")
     @CreationTimestamp

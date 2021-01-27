@@ -49,7 +49,7 @@ public class MyModule implements Serializable {
 
     @Column(nullable = false,columnDefinition = "int not null default 0")
     @ApiModelProperty(value = "排序")
-    private Integer weight;
+    private Integer weight = 0;
 
     @ApiModelProperty(value = "是否可以删除,1可以删，0不可以删")
     @Column(nullable = false,columnDefinition = "int DEFAULT 1")

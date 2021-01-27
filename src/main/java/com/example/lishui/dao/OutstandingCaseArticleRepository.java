@@ -32,5 +32,5 @@ public interface OutstandingCaseArticleRepository extends JpaRepository<Outstand
 
     @Operation(summary = "根据上一级名字查找文章")
     @RestResource(path = "findAllByTagName")
-    Page<OutstandingCaseArticle> findAllByTagEquals(String tag, Pageable p);
+    Page<OutstandingCaseArticle> findAllByTagIdEquals(Long tagId, Pageable p);
 }

@@ -45,7 +45,7 @@ public class OutstandingCase implements Serializable {
 
     @Column(nullable = false,columnDefinition = "int not null default 0")
     @ApiModelProperty(value = "排序")
-    private Integer weight;
+    private Integer weight = 0;
 
 
 }

@@ -36,5 +36,5 @@ public interface HighlightArticleRepository extends JpaRepository<HighlightArtic
 
     @Operation(summary = "根据上一级名字查找文章")
     @RestResource(path = "findAllByTagName")
-    Page<HighlightArticle> findAllByTagEquals(String tag, Pageable p);
+    Page<HighlightArticle> findAllByTagIdEquals(Long tagId, Pageable p);
 }

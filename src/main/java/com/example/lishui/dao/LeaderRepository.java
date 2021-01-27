@@ -33,7 +33,7 @@ public interface LeaderRepository extends JpaRepository<Leader,Long> {
     Page<Leader> findAllByCreateAtBetween(@DateTimeFormat(pattern = "yyyy-MM-dd") @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd") Date start,
                                                           @DateTimeFormat(pattern = "yyyy-MM-dd") @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd") Date end, Pageable p);
 
-    @Operation(summary = "根据上一级名字查找文章")
-    @RestResource(path = "findAllByTagName")
-    Page<Leader> findAllByTagEquals(String tag, Pageable p);
+//    @Operation(summary = "根据上一级名字查找文章")
+//    @RestResource(path = "findAllByTagName")
+//    Page<Leader> findAllByTagIdEquals(Long tag, Pageable p);
 }

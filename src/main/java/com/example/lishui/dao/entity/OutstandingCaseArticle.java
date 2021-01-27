@@ -27,8 +27,8 @@ public class OutstandingCaseArticle implements Serializable {
     private Long id;
 
     @Column(nullable = false)
-    @ApiModelProperty(value = "分类",required = true)
-    private String tag = "未分类";
+    @ApiModelProperty(value = "分类id",required = true)
+    private Long tagId;
 
     @Column(nullable = false)
     @ApiModelProperty(value = "标题",required = true)
@@ -70,5 +70,5 @@ public class OutstandingCaseArticle implements Serializable {
 
     @Column(nullable = false,columnDefinition = "int not null default 0")
     @ApiModelProperty(value = "排序")
-    private Integer weight;
+    private Integer weight = 0;
 }

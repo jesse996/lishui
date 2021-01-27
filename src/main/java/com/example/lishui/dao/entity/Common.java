@@ -31,7 +31,7 @@ public class Common {
 
     @ApiModelProperty(value = "一级模块名称", required = true)
 //    @Column(nullable = false)
-    private String module;
+    private Long moduleId;
 
     @ApiModelProperty("封面图url")
 //    @Column(nullable = false)
@@ -43,7 +43,7 @@ public class Common {
 
     @Column(nullable = false,columnDefinition = "int not null default 0")
     @ApiModelProperty(value = "排序")
-    private Integer weight;
+    private Integer weight = 0;
 
     @ApiModelProperty(value = "2级模块样式", allowableValues = "range[1,2]",required = true)
     @Column(nullable = false)

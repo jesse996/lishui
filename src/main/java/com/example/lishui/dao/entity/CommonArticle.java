@@ -31,12 +31,12 @@ public class CommonArticle {
     private Long id;
 
     @Column(nullable = false)
-    @ApiModelProperty(value = "一级模块名称",required = true)
-    private String module;
+    @ApiModelProperty(value = "一级模块id",required = true)
+    private Long moduleId;
 
     @Column(nullable = false)
-    @ApiModelProperty(value = "二级模块名称",required = true)
-    private String tag = "未分类";
+    @ApiModelProperty(value = "二级模块id",required = true)
+    private Long tagId;
 
     @Column(nullable = false)
     @ApiModelProperty(value = "标题",required = true)
@@ -72,7 +72,7 @@ public class CommonArticle {
 
     @Column(nullable = false,columnDefinition = "int not null default 0")
     @ApiModelProperty(value = "排序")
-    private Integer weight;
+    private Integer weight = 0;
 
     @ApiModelProperty(value = "更新时间")
     @UpdateTimestamp

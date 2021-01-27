@@ -35,15 +35,16 @@ public interface ReformNewsRepository extends JpaRepository<ReformNews, Long> {
                                               @DateTimeFormat(pattern = "yyyy-MM-dd") @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd") Date end, Pageable p);
 
     @Operation(summary = "根据上一级查找文章")
-    @RestResource(path = "findAllByTagName")
-    Page<ReformNews> findAllByTagEquals(String tag, Pageable p);
+    @RestResource(path = "findAllByTagId")
+    Page<ReformNews> findAllByTagIdEquals(Long tagId, Pageable p);
+
 
     @Operation(summary = "获取所有分类")
-    @Query(value = "select distinct tag from reform_news",nativeQuery = true)
+    @Query(value = "select distinct tag_id from reform_news",nativeQuery = true)
     @RestResource(exported = false)
     List<String> findAllTags();
 
     @Operation(summary = "获取分类对应的文章数量")
     @RestResource(exported = false)
-    Integer countByTag(String tag);
+    Integer countByTagId(Long tagId);
 }

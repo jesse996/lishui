@@ -36,5 +36,5 @@ public interface PartyArticleRepository extends JpaRepository<PartyArticle,Long>
 
     @Operation(summary = "根据上一级名字查找文章")
     @RestResource(path = "findAllByTagName")
-    Page<PartyArticle> findAllByTagEquals(String tag, Pageable p);
+    Page<PartyArticle> findAllByTagIdEquals(Long tagId, Pageable p);
 }

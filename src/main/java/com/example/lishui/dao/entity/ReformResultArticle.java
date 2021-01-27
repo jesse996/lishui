@@ -17,7 +17,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Cacheable // 缓存
-@org.hibernate.annotations.Cache(region = "reform_result_article", usage = CacheConcurrencyStrategy.READ_WRITE ) // 缓存名字以及策略
+@org.hibernate.annotations.Cache(region = "reform_result_article", usage = CacheConcurrencyStrategy.READ_WRITE)
+// 缓存名字以及策略
 @ApiModel("改革成果文章实体")
 public class ReformResultArticle {
     @Id
@@ -27,29 +28,29 @@ public class ReformResultArticle {
 
     //分类就是上一级的名字
     @Column(nullable = false)
-    @ApiModelProperty(value = "分类",required = true)
-    private String tag ;
+    @ApiModelProperty(value = "分类id", required = true)
+    private Long tagId;
 
     @Column(nullable = false)
-    @ApiModelProperty(value = "标题",required = true)
+    @ApiModelProperty(value = "标题", required = true)
     private String title;
 
     @Column(nullable = false)
-    @ApiModelProperty(value = "封面图",required = true)
+    @ApiModelProperty(value = "封面图", required = true)
     private String coverImg;
 
     @Column(nullable = false)
-    @ApiModelProperty(value = "文章类型：图片，链接，视频",required = true)
+    @ApiModelProperty(value = "文章类型：图片，链接，视频", required = true)
     private Integer type;
 
     @Lob
     @Basic(fetch = FetchType.LAZY)
     @Column(nullable = false)
-    @ApiModelProperty(value = "文章内容",required = true)
+    @ApiModelProperty(value = "文章内容", required = true)
     private String content;
 
     @Column()
-    @ApiModelProperty(value = "发布人",required = true)
+    @ApiModelProperty(value = "发布人", required = true)
     private String username;
 
     @Column(nullable = false)
@@ -68,7 +69,7 @@ public class ReformResultArticle {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateAt;
 
-    @Column(nullable = false,columnDefinition = "int not null default 0")
+    @Column(nullable = false, columnDefinition = "int not null default 0")
     @ApiModelProperty(value = "排序")
-    private Integer weight;
+    private Integer weight = 0;
 }

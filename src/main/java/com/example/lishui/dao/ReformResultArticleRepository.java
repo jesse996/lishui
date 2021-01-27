@@ -36,5 +36,5 @@ public interface ReformResultArticleRepository extends JpaRepository<ReformResul
 
     @Operation(summary = "根据上一级名字查找文章")
     @RestResource(path = "findAllByTagName")
-    Page<ReformResultArticle> findAllByTagEquals(String tag, Pageable p);
+    Page<ReformResultArticle> findAllByTagIdEquals(Long tag, Pageable p);
 }

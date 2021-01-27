@@ -52,8 +52,8 @@ public class ReformNews implements Serializable {
     private String username;
 
     @Column(nullable = false)
-    @ApiModelProperty(value = "分类",required = true)
-    private String tag = "未分类";
+    @ApiModelProperty(value = "分类Id",required = true)
+    private Long tagId ;
 
     @Column(nullable = false)
     @ApiModelProperty(value = "0隐藏，1展示")
@@ -73,5 +73,5 @@ public class ReformNews implements Serializable {
 
     @Column(nullable = false,columnDefinition = "int not null default 0")
     @ApiModelProperty(value = "排序")
-    private Integer weight;
+    private Integer weight =0 ;
 }
