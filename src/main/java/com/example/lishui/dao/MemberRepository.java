@@ -22,9 +22,9 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     @Operation(summary = "根据名字查找")
     Page<Member> findAllByNameContains(String name, Pageable p);
 
-    @Operation(summary = "根据部门名字查找")
-    Page<Member> findAllByDepartment(String department, Pageable p);
+    @Operation(summary = "根据部门id查找")
+    Page<Member> findAllByDepartmentId(Long departmentId, Pageable p);
 
-    @Operation(summary = "根据部门名获取人数")
-    Integer countByDepartment(String department);
+    @Operation(summary = "根据部门id获取人数")
+    Integer countByDepartmentId(Long departmentId);
 }

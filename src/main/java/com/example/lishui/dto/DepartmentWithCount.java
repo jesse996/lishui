@@ -20,7 +20,7 @@ public class DepartmentWithCount implements Serializable {
     private Integer number;
     private Integer weight;
 
-    public DepartmentWithCount(Department department,int number) {
+    public DepartmentWithCount(Department department,Integer number) {
         this.id=department.getId();
         this.name = department.getName();
         this.weight = department.getWeight();

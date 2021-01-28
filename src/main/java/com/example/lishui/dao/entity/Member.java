@@ -36,9 +36,9 @@ public class Member implements Serializable {
     @ApiModelProperty(value = "成员职务", required = true)
     private String job;
 
-    @Column(nullable = false)
-    @ApiModelProperty(value = "成员部门", required = true)
-    private String department;
+    @Column(nullable = false,columnDefinition = "bigint not null default 0")
+    @ApiModelProperty(value = "成员部门id", required = true)
+    private Long departmentId;
 
     @Column(nullable = false)
     @ApiModelProperty(value = "成员照片", required = true)
