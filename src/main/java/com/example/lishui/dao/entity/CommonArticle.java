@@ -34,9 +34,10 @@ public class CommonArticle {
     @ApiModelProperty(value = "一级模块id",required = true)
     private Long moduleId;
 
-    @Column(nullable = false)
+
+    @Column(nullable = false,columnDefinition = "bigint not null default 0")
     @ApiModelProperty(value = "二级模块id",required = true)
-    private Long tagId;
+    private Long tagId = 0L;
 
     @Column(nullable = false)
     @ApiModelProperty(value = "标题",required = true)

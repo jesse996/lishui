@@ -51,9 +51,9 @@ public class ReformNews implements Serializable {
     @ApiModelProperty(value = "发布人",required = true)
     private String username;
 
-    @Column(nullable = false)
+    @Column(nullable = false,columnDefinition = "bigint not null default 0")
     @ApiModelProperty(value = "分类Id",required = true)
-    private Long tagId ;
+    private Long tagId = 0L;
 
     @Column(nullable = false)
     @ApiModelProperty(value = "0隐藏，1展示")

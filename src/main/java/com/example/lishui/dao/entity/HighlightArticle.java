@@ -29,9 +29,9 @@ public class HighlightArticle {
     @ApiModelProperty("id")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false,columnDefinition = "bigint not null default 0")
     @ApiModelProperty(value = "分类",required = true)
-    private Long tagId;
+    private Long tagId = 0L;
 
     @Column(nullable = false)
     @ApiModelProperty(value = "标题",required = true)

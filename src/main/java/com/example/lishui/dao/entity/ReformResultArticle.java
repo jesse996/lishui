@@ -27,9 +27,9 @@ public class ReformResultArticle {
     private Long id;
 
     //分类就是上一级的名字
-    @Column(nullable = false)
+    @Column(nullable = false,columnDefinition = "bigint not null default 0")
     @ApiModelProperty(value = "分类id", required = true)
-    private Long tagId;
+    private Long tagId = 0L;
 
     @Column(nullable = false)
     @ApiModelProperty(value = "标题", required = true)
