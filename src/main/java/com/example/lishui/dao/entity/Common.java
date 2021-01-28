@@ -30,11 +30,10 @@ public class Common {
     private String name;
 
     @ApiModelProperty(value = "一级模块名称", required = true)
-//    @Column(nullable = false)
+    @Column(nullable = false)
     private Long moduleId;
 
     @ApiModelProperty("封面图url")
-//    @Column(nullable = false)
     private String img;
 
     @ApiModelProperty("0隐藏，1显示")
@@ -48,8 +47,4 @@ public class Common {
     @ApiModelProperty(value = "2级模块样式", allowableValues = "range[1,2]",required = true)
     @Column(nullable = false)
     private Integer style = 0;
-
-//    @ApiModelProperty(value = "大屏模块样式")
-//    @Column(nullable = false,columnDefinition = "int default 0")
-//    private Integer firstStyle = 0;
 }
