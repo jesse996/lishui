@@ -1,5 +1,6 @@
 package com.example.lishui.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -61,4 +63,10 @@ public class Honor {
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createAt;
+
+    //用户自己选的日期
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
+    @ApiModelProperty(value = "自己选的日期")
+    private Date time;
 }

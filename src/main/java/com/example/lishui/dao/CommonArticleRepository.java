@@ -31,8 +31,7 @@ public interface CommonArticleRepository extends JpaRepository<CommonArticle, Lo
     @ApiImplicitParams({@ApiImplicitParam(name = "start", value = "开始时间，形如：2020-01-01", example = "2020-01-01"),
             @ApiImplicitParam(name = "end", value = "结束时间，形如：2020-01-01", example = "2020-01-01")})
     @RestResource(path = "findAllByCreateAtBetween")
-//    @Query(value = "select  u from #{#entityName} u where u.module=:module and u.tag= :tag and u.createAt between :start and :end")
-    Page<CommonArticle> findAllByModuleIdAndTagIdAndCreateAtBetween( Long moduleId,Long tagId,@DateTimeFormat(pattern = "yyyy-MM-dd") @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd") Date start,
+    Page<CommonArticle> findAllByModuleIdAndTagIdAndTimeBetween( Long moduleId,Long tagId,@DateTimeFormat(pattern = "yyyy-MM-dd") @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd") Date start,
                                                           @DateTimeFormat(pattern = "yyyy-MM-dd") @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd") Date end, Pageable p);
 
     @Operation(summary = "根据一级名称和二级名称查找文章")
