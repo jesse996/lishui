@@ -21,6 +21,11 @@ public class VerifyCodeController {
     @GetMapping("/api/vercode")
     @Operation(summary = "获取验证码",description = "获取验证码")
     public void code(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.setContentType("image/jpeg");
+        resp.setHeader("Cache-Control", "no-cache");
+        resp.setHeader("Expire", "0");
+        resp.setHeader("Pragma", "no-cache");
+
         VerifyCode vc = new VerifyCode();
         BufferedImage image = vc.getImage();
         String text = vc.getText();

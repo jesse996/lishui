@@ -34,16 +34,18 @@ public class VerifyCodeFilter extends OncePerRequestFilter {
                 // 验证码验证
                 String requestCaptcha = request.getParameter("code");
                 String genCaptcha = (String) request.getSession().getAttribute("index_code");
+                //删除验证码
+                request.getSession().removeAttribute("index_code");
 
                 if (!StringUtils.hasText(genCaptcha))
-                    throw new AuthenticationServiceException("请先获取验证码！");
+                    throw new AuthenticationServiceException("请先获取验证码!");
                 if (!StringUtils.hasText(requestCaptcha))
                     throw new AuthenticationServiceException("验证码不能为空!");
                 if (!genCaptcha.equalsIgnoreCase(requestCaptcha)) {
                     throw new AuthenticationServiceException("验证码错误!");
                 }
             }
-            request.getSession().removeAttribute("index_code");
+
             filterChain.doFilter(request, response);
         } catch (AuthenticationServiceException e) {
 //            e.printStackTrace();
