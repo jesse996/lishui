@@ -31,7 +31,8 @@ public class DepartmentController {
 
 
     //部门返回人数
-    @GetMapping("")
+    @Operation(summary = "查找所有")
+    @GetMapping("/findAllWithWeight")
     public List<DepartmentWithCount> findAllDepartment() {
         return departmentRepository.findAll().stream()
                 .map(x -> new DepartmentWithCount(x,memberRepository.countByDepartmentId(x.getId())))
@@ -46,15 +47,5 @@ public class DepartmentController {
         return ResponseEntity.ok(departmentRepository.saveAll(lists).stream().sorted(Comparator.comparingInt(Department::getWeight)).collect(Collectors.toList()));
     }
 
-//    //部门返回人数
-//    @RequestMapping(value = "/{id}",method = {RequestMethod.GET,RequestMethod.DELETE,RequestMethod.PUT,RequestMethod.PATCH})
-//    public DepartmentWithCount findById(@PathVariable("id") Long id) {
-//        var optional = departmentRepository.findById(id);
-//        if (optional.isPresent()) {
-//            var department = optional.get();
-//            return new DepartmentWithCount(department, memberRepository.countByDepartment(department.getName()));
-//        }else {
-//            return null;
-//        }
-//    }
+
 }

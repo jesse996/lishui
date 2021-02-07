@@ -13,15 +13,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.Duration;
-import java.time.LocalDate;
 
 /**
  * Created by jesse on 2020/12/14 下午4:21
  */
 @Component
 public class VerifyCodeFilter extends OncePerRequestFilter {
-    private String defaultFilterProcessUrl = "/login";
+    private String defaultFilterProcessUrl = "/api/login";
     @Autowired 
     @Qualifier("handlerExceptionResolver")
     private HandlerExceptionResolver resolver;
