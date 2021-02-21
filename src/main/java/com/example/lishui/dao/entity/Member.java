@@ -51,4 +51,9 @@ public class Member implements Serializable {
     @Column(nullable = false)
     @ApiModelProperty(value = "0隐藏，1展示")
     private Integer status = 1;
+    @Column(nullable = false)
+    @ApiModelProperty(value = "部门名字")
+    private String department ;
+
+
 }
