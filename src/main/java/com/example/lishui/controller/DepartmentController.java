@@ -40,6 +40,17 @@ public class DepartmentController {
                 .collect(Collectors.toList());
     }
 
+    @Operation(summary = "查找所有部门及其机构成员")
+    @GetMapping("/findAllDepartmentAndMembers")
+    public List<DepartmentWithCount> findAllDepartmentAndMembers() {
+        List<DepartmentWithCount> collect = departmentRepository.findAll().stream()
+                .map(x -> new DepartmentWithCount(x, memberRepository.countByDepartmentId(x.getId())))
+                .sorted(Comparator.comparingInt(DepartmentWithCount::getWeight))
+                .collect(Collectors.toList());
+        collect.forEach(x-> x.setMembers(memberRepository.findAllByDepartmentId123(x.getId())));
+        return collect;
+    }
+
     @Transactional
     @Operation(summary = "批量更新")
     @PostMapping("batchUpdate")

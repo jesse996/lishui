@@ -1,11 +1,13 @@
 package com.example.lishui.dto;
 
 import com.example.lishui.dao.entity.Department;
+import com.example.lishui.dao.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @Author: jesse
@@ -19,6 +21,7 @@ public class DepartmentWithCount implements Serializable {
     private String name;
     private Integer number;
     private Integer weight;
+    private List<Member> members;
 
     public DepartmentWithCount(Department department,Integer number) {
         this.id=department.getId();
