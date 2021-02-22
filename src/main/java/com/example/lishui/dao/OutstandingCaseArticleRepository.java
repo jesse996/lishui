@@ -20,8 +20,8 @@ import java.util.Date;
 public interface OutstandingCaseArticleRepository extends JpaRepository<OutstandingCaseArticle,Long> {
     @Operation(summary = "根据标题或发布人查找文章")
     @RestResource(path = "findAllByTitleOrAuthor")
-    @Query(value = "select  u from #{#entityName} u where u.title like %:search% or u.username like %:search%")
-    Page<OutstandingCaseArticle> findAllByTitleOrUsername(@Param("search") String search, Pageable p);
+    @Query(value = "select  u from #{#entityName} u where u.tagId=:tagId and u.title like %:search% or u.username like %:search%")
+    Page<OutstandingCaseArticle> findAllByTitleOrUsername(@Param("search") String search, Pageable p,@Param("tagId") Long tagId);
 
     @Operation(summary = "根据时间范围查找文章")
     @ApiImplicitParams({@ApiImplicitParam(name = "start", value = "开始时间，形如：2020-01-01", example = "2020-01-01"),
